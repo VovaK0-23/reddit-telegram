@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: reddit_telegram_development
+
+test:
+  <<: *default
+  database: reddit_telegram_test
+
+production:
+  <<: *default
+  database: reddit_telegram_production
+  username: reddit_telegram
+  password: <%= ENV['REDDIT_TELEGRAM_DATABASE_PASSWORD'] %>
