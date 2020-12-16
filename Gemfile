@@ -5,6 +5,7 @@ ruby '2.7.1'
 
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'cancancan'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'jbuilder', '~> 2.7'
