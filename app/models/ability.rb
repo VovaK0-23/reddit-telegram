@@ -5,7 +5,6 @@ class Ability
 
     case user.role
     when 'admin'
-      can :read, ActiveAdmin::Page, name: 'Dashboard'
       can :manage, :all
     when 'premium'
       processing(user)
@@ -26,5 +25,7 @@ class Ability
     can :read, User
     # and they can manage themselves
     can :manage, user
+    can :read, Post
+    can :manage, Post
   end
 end
