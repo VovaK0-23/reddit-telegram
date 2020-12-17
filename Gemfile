@@ -8,6 +8,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cancancan'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
