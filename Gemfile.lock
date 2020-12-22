@@ -119,6 +119,7 @@ GEM
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
+    httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
@@ -259,6 +260,10 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    telegram-bot (0.15.1)
+      actionpack (>= 4.0, < 6.2)
+      activesupport (>= 4.0, < 6.2)
+      httpclient (~> 2.7)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -308,6 +313,7 @@ DEPENDENCIES
   sidekiq-statistic
   spring
   spring-watcher-listen (~> 2.0.0)
+  telegram-bot
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
