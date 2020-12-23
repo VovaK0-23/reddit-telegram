@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params %i[title body published_at user_id]
+  permit_params %i[title body published_at user_id chat_id]
 
   scope :all
   scope :published
