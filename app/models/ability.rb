@@ -25,6 +25,7 @@ class Ability
     can :read, User
     # and they can manage themselves
     can :manage, user
+    can :read, Post
     can :manage, Post
   end
 end

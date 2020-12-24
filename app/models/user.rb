@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :posts
-  has_many :chats
   before_save { self.email = email.downcase }
   validates :username, presence: true,
             uniqueness: { case_sensitive: false },
