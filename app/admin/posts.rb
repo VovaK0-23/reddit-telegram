@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params %i[title body published_at user_id chat_id]
+  permit_params %i[title body published_at user_id image chat_id]
 
   scope :all
   scope :published
@@ -17,7 +17,17 @@ ActiveAdmin.register Post do
     service.send_message(post.body)
     redirect_to admin_post_path(post)
   end
-
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :user
+      f.input :chat
+      f.input :body
+      f.input :published_at
+      f.input :image, as: :file
+    end
+    f.actions
+  end
   # member_action :unpublish, method: :put do
   #   post = Post.find(params[:id])
   #   post.update(published_at: nil)
