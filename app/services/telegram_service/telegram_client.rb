@@ -11,6 +11,10 @@ module TelegramService
       Telegram.bots[:default].send_message(chat_id: @chat_id, text: message)
     end
 
+    def send_photo(image, text = '')
+      Telegram.bots[:default].send_photo(chat_id: @chat_id, photo: image, caption: text)
+    end
+
     private
 
     def config

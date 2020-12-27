@@ -6,6 +6,7 @@ ruby '2.7.1'
 gem 'activeadmin'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cancancan'
+gem 'cloudinary'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'

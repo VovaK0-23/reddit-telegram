@@ -13,8 +13,11 @@ ActiveAdmin.register Post do
     post = Post.find(params[:id])
     post.update(published_at: Time.zone.now)
     chat_id = post.chat.name
+    # image = Rails.application.routes.url_helpers.rails_blob_url(post.image)
+    image = Cloudinary::Uploader.upload(ActiveStorage::Blob.service.send(:path_for, post.image.key), resource_type: :auto)
     service = TelegramService::TelegramClient.new(chat_id)
-    service.send_message(post.body)
+    service.send_photo(image["secure_url"])
+    service.send_message(post.body) if post.body.present?
     redirect_to admin_post_path(post)
   end
   form do |f|
