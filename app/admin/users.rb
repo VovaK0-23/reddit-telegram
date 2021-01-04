@@ -29,6 +29,7 @@ ActiveAdmin.register User do
         f.input :password_confirmation
         f.input :role
       end
+      f.actions
     else
       f.inputs do
         f.input :username
