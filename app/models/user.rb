@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :posts
-  has_many :chats
+  has_many :posts, dependent: :destroy
+  has_many :chats, dependent: :destroy
   before_save { self.email = email.downcase }
   validates :username, presence: true,
             uniqueness: { case_sensitive: false },
