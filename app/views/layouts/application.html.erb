@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RedditTelegram</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>RedditTelegram</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<a name="top"></a>
+<nav class="navbar navbar-expand sticky-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand nounderline" id="ROM" href="#top">ROM</a>
+    <% if user_signed_in? %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link active nounderline" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active nounderline" %>
+          </li>
+        </ul>
+      </div>
+      <span class="navbar-text nav-text">
+    Signed in as <%= current_user.email %>
+      </span>
+    <% else %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link active nounderline" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_user_session_path, class: "nav-link active nounderline" %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    <span class="navbar-text nav-text message">
+     <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, id: "flash_#{name}" %>
+        </span>
+     <% end %>
+      </div>
+</nav>
+<%= yield %>
+</body>
 </html>
