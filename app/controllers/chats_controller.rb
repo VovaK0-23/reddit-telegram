@@ -1,8 +1,10 @@
 class ChatsController < InheritedResources::Base
+  include Devise::Controllers::Helpers
 
   def show
-    @user = User.find(params[:id])
-    @chat = Chat.where(user_id: @user.id)
+    # @user = User.find(params[:id])
+    # @chat = Chat.where(user_id: @user.id)
+    @chat = current_user.chats
   end
 
   def create
@@ -19,6 +21,14 @@ class ChatsController < InheritedResources::Base
 
   def new
     @chat = Chat.new
+  end
+
+  def destroy
+    # if @chat.destroy.destroyed?
+    #   flash[:notice] = 'Item was deleted'
+    # else
+    #   flash[:alert] = "Item wasn't deleted"
+    # end
   end
 
   private

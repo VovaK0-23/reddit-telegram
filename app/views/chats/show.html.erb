@@ -8,6 +8,9 @@
     <tbody>
     <tr data-chat_id="<%= chat.id %>">
       <th scope="col"><%= chat.name %></th>
+      <th><%= link_to 'delete', delete_chat_path(chat), method: :delete%></th>
+    </tr>
+    </tbody>
   <% end %>
 </table>
 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
