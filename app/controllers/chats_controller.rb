@@ -1,11 +1,11 @@
 class ChatsController < InheritedResources::Base
   include Devise::Controllers::Helpers
 
-  def show
-    # @user = User.find(params[:id])
-    # @chat = Chat.where(user_id: @user.id)
+  def index
     @chat = current_user.chats
   end
+
+  def show; end
 
   def create
     @chat = Chat.create(app_chat_params)
@@ -24,11 +24,10 @@ class ChatsController < InheritedResources::Base
   end
 
   def destroy
-    # if @chat.destroy.destroyed?
-    #   flash[:notice] = 'Item was deleted'
-    # else
-    #   flash[:alert] = "Item wasn't deleted"
-    # end
+    @chat = Chat.find(params[:id])
+    @chat.destroy
+    flash.notice="Chat '#{@chat.name}' was deleted"
+    redirect_to chats_path
   end
 
   private
