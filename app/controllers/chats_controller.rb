@@ -8,7 +8,7 @@ class ChatsController < InheritedResources::Base
   def show; end
 
   def create
-    @chat = Chat.create(app_chat_params)
+    @chat = Chat.create(chat_params)
 
     if @chat.persisted?
       flash[:notice] = 'Chat was saved'
@@ -23,6 +23,21 @@ class ChatsController < InheritedResources::Base
     @chat = Chat.new
   end
 
+  def edit
+    @chat = Chat.find(params[:id])
+  end
+
+  def update
+    @chat = Chat.find(params[:id])
+    if @chat.update(chat_params)
+      flash[:notice] = 'Chat was updated!'
+      redirect_to chats_path
+    else
+      flash[:alert] = 'Please fill all fields correctly!'
+      render :edit
+    end
+  end
+
   def destroy
     @chat = Chat.find(params[:id])
     @chat.destroy
@@ -33,11 +48,6 @@ class ChatsController < InheritedResources::Base
   private
 
   def chat_params
-    params.require(:post).permit(:name, :user_id)
+    params.require(:chat).permit(:name, :user_id, :subreddit)
   end
-
-  def app_chat_params
-    params.require(:chat).permit(:name, :user_id)
-  end
-
 end

@@ -8,9 +8,7 @@ module RedditService
     end
 
     def receive_posts(subreddit)
-      posts = client.get(subreddit, nocache: true).body.data.children
-      a = posts.map { |post| post.extract!("data").values }
-      a.first.first['NAME_OF_PARAM']
+      client.get(subreddit, nocache: true).body.data.children.map { |post| post.extract!("data").values }
     end
   end
 end

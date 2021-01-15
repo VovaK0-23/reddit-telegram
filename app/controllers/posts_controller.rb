@@ -3,7 +3,7 @@ class PostsController < InheritedResources::Base
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :published_at, :user_id, :image, chat_id)
+    params.require(:post).permit(:title, :body, :published_at, :user_id, :image, :chat_id)
   end
 
 end

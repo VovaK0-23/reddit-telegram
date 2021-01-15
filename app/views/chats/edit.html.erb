@@ -1,6 +1,6 @@
 <div class="col-sm-12 my-auto">
-  <h2 style="color: white; margin: 0 auto">Create new chat</h2>
-  <%= form_for :chat do |f| %>
+  <h2 style="color: white; margin: 0 auto"></h2>
+  <%= form_for @chat, url: update_chat_path, method: :put do |f| %>
     <div class="col-sm-10">
       <%= f.label :name %>
     </div>
@@ -17,7 +17,7 @@
       <%= f.hidden_field :user_id, value: current_user.id%>
     </div>
     <div class="col-sm-10">
-      <%= f.button :create, class: "btn btn-secondary",
+      <%= f.submit :update, class: "btn btn-secondary",
                    style: "margin-top: 15px" %>
     </div>
   <% end %>

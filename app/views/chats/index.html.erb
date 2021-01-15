@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th scope="col">Name</th>
+    <th scope="col">edit</th>
     <th scope="col">delete</th>
   </tr>
   </thead>
@@ -9,6 +10,7 @@
     <tbody>
     <tr data-chat_id="<%= chat.id %>">
       <th scope="col"><%= link_to chat.name, chat_path(chat), class: "text-info" %></th>
+      <th scope="col"><%= button_to 'edit', edit_chat_path(chat), method: :get, class: "text-info" %></th>
       <th scope="col"><%= button_to 'delete', delete_chat_path(chat), method: :delete, class: "text-info" %></th>
     </tr>
     </tbody>
