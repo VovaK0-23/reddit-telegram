@@ -1,5 +1,10 @@
 class PostsController < InheritedResources::Base
 
+  def index
+    subreddit = Chat.find(params[:id]).subreddit
+    @posts =  RedditService::RedditClient.new.receive_posts(subreddit)
+  end
+
   private
 
   def post_params

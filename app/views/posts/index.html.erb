@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="jumbotron text-center text-white" id="home-container">
+    <h3 id="home-header">Reddit telegram</h3>
+    <hr class="my-4" id="home-hr">
+    <% @posts.each do |post|%>
+      <div class="jumbotron text-center text-white" id="home-text">
+        <p><%= post.first['title'] %></p>
+        <%= image_tag post.first['url']%>
+      </div>
+    <% end %>
+  </div>
+</div>
