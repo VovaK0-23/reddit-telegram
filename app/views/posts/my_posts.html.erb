@@ -2,17 +2,30 @@
   <div class="jumbotron text-center text-white" id="home-container">
     <h3 id="home-header">Reddit telegram</h3>
     <hr class="my-4" id="home-hr">
+    <%= button_to 'all', my_posts_path,
+                  method: :get,
+                  class: "btn btn-secondary",
+                  style: "margin-right: 15px"%>
+    <%= button_to 'published', published_path,
+                  method: :get,
+                  class: "btn btn-secondary",
+                  style: "margin-right: 15px"%>
+    <%= button_to 'unpublished', unpublished_path,
+                  method: :get,
+                  class: "btn btn-secondary",
+                  style: "margin-right: 15px"%>
+    <hr class="my-4" id="home-hr">
     <% @posts.each do |post|%>
       <div class="jumbotron text-center text-white" id="home-text">
         <p><%= post.body %></p>
         <% if post.link %>
           <%= image_tag post.link%>
         <% end %>
-      </div>
-      <%= button_to 'Publish', publish_path(post),
+      <%= button_to post.published_at? ? 'Send again' : 'Publish', publish_path(post),
                     method: :put,
                     class: "btn btn-secondary",
                     style: "margin-right: 15px" %>
+      </div>
     <% end %>
   </div>
 </div>

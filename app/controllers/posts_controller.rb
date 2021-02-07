@@ -30,6 +30,14 @@ class PostsController < InheritedResources::Base
     service.send_photo(image["secure_url"], post.body) if post.image.present?
     service.send_photo(post.link, post.body) if post.link.present?
   end
+  def published
+    @posts = Post.published
+    render :my_posts
+  end
+  def unpublished
+    @posts = Post.unpublished
+    render :my_posts
+  end
   private
 
   def post_params
