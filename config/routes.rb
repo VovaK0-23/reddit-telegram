@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   put 'chats/:id/edit', to: 'chats#update', as: :update_chat
 
   get 'chats/:id/posts', to: 'posts#index', as: :posts
+  post 'chats/:id/posts', to: 'posts#create', as: :create_post
+  get 'chats/:id/my_posts', to: 'posts#my_posts', as: :my_posts
+
+  put 'post/:id/publish', to: 'posts#publish', as: :publish
 end
