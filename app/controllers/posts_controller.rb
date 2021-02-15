@@ -38,8 +38,9 @@ class PostsController < InheritedResources::Base
         service.send_photo(image["secure_url"], post.body)
       end
     else
-      service.send_photo(post.link, post.body) if post.link.include?(".jpeg")
+      service.send_photo(post.link, post.body) if post.link.include?(".jpeg") or post.link.include?(".jpg") or post.link.include?(".png")
       service.send_animation(post.link, post.body) if post.link.include?(".gif")
+      service.send_video(post.link, post.body) if post.link.include?(".mp4")
     end
 
     if post.published_at?

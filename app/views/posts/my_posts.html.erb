@@ -19,12 +19,16 @@
       <div class="jumbotron text-center text-white" id="home-text">
         <p><%= post.body %></p>
         <% if post.link %>
-          <%= image_tag post.link%>
+          <% if post.link.to_s.include?(".mp4")%>
+            <%= video_tag post.link, :controls => true %>
+          <% else %>
+            <%= image_tag post.link%>
+          <% end %>
         <% end %>
-      <%= button_to post.published_at? ? 'Send again' : 'Publish', publish_path(post),
-                    method: :post,
-                    class: "btn btn-secondary",
-                    style: "margin-right: 15px" %>
+        <%= button_to post.published_at? ? 'Send again' : 'Publish', publish_path(post),
+                      method: :post,
+                      class: "btn btn-secondary",
+                      style: "margin-right: 15px" %>
       </div>
     <% end %>
   </div>
