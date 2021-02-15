@@ -22,7 +22,7 @@
           <%= image_tag post.link%>
         <% end %>
       <%= button_to post.published_at? ? 'Send again' : 'Publish', publish_path(post),
-                    method: :put,
+                    method: :post,
                     class: "btn btn-secondary",
                     style: "margin-right: 15px" %>
       </div>

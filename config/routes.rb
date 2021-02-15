@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'chats/:id/posts', to: 'posts#create', as: :create_post
   get 'chats/:id/my_posts', to: 'posts#my_posts', as: :my_posts
 
-  put 'post/:id/publish', to: 'posts#publish', as: :publish
+  post 'post/:id/publish', to: 'posts#publish', as: :publish
   get 'chats/:id/my_posts/published', to: 'posts#published', as: :published
   get 'chats/:id/my_posts/unpublished', to: 'posts#unpublished', as: :unpublished
 end

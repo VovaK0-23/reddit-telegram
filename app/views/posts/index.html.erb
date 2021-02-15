@@ -5,9 +5,14 @@
     <%= link_to "My posts", my_posts_path, :style=>'color: white;', class: "nav-link active nounderline" %>
     <hr class="my-4" id="home-hr">
     <% @posts.each do |post|%>
+      <% next if post.first['stickied'] == true %>
       <div class="jumbotron text-center text-white" id="home-text">
         <p><%= post.first['title'] %></p>
-        <%= image_tag post.first['url']%>
+        <% if post.first['is_video'] == true %>
+          <%= video_tag post.first['media']['reddit_video']['fallback_url'], :controls => true %>
+        <% else %>
+          <%= image_tag post.first['url']%>
+        <% end %>
         <%= form_for :post do |f| %>
           <%= f.hidden_field :body, value: post.first['title']%>
           <%= f.hidden_field :link, value: post.first['url']%>
