@@ -40,7 +40,7 @@ class PostsController < InheritedResources::Base
       end
     else
       service.send_photo(valid_image(link, 95), post.body) if post.link.include?(".jpeg") or post.link.include?(".jpg") or post.link.include?(".png")
-      service.send_animation(valid_gif(link, 80), post.body) if link.include?(".gif")
+      service.send_animation(valid_gif(link), post.body) if link.include?(".gif")
       service.send_video(link, post.body) if link.include?(".mp4")
     end
 
@@ -71,25 +71,23 @@ class PostsController < InheritedResources::Base
 
   def resize_image(link, resize_value)
     image = MiniMagick::Image.open(link)
-    if image.size <= 10485760
-      return image.path
+    if image.size > 10485760
+      image = MiniMagick::Image.new(image.path)
+      while image.size > 10485760
+        image.resize(resize_value.to_s + '%')
+        resize_value - 5
+      end
     end
-    image.resize(resize_value.to_s + '%')
-    resize_image(link, resize_value - 5)
+    return Faraday::UploadIO.new(image.path, image.type)
   end
 
-  def resize_gif(link, resize_value)
+  def resize_gif(link)
     gif = MiniMagick::Image.open(link)
     if gif.size <= 52428800
-      return gif.path
+      return Faraday::UploadIO.new(gif.path, gif.type)
     else
-      gif.write("/tmp/new_gif.gif")
-      gif = MiniMagick::Image.new("/tmp/new_gif.gif")
-      while gif.size > 52428800
-        gif.resize(resize_value.to_s + '%')
-        resize_value - 10
-      end
-      return gif.path
+      redirect_to my_posts_path
+      #TODO flesh error, gif too big
     end
   end
 
@@ -101,12 +99,12 @@ class PostsController < InheritedResources::Base
     resize_image(link, resize_value)
   end
 
-  def valid_gif(link, resize_value)
+  def valid_gif(link)
     gif = MiniMagick::Image.open(link)
     if gif.size <= 20971520
       return link
     end
-    resize_gif(link, resize_value)
+    resize_gif(link)
   end
 
 end
