@@ -39,8 +39,16 @@ class PostsController < InheritedResources::Base
         service.send_photo(image["secure_url"], post.body)
       end
     else
+      if link.include?(".gif")
+        file = valid_gif(link)
+        if file == false
+          redirect_to my_posts_path(chat) and return
+          #TODO flesh error, gif too big
+        else
+          service.send_animation(file, post.body)
+        end
+      end
       service.send_photo(valid_image(link, 95), post.body) if post.link.include?(".jpeg") or post.link.include?(".jpg") or post.link.include?(".png")
-      service.send_animation(valid_gif(link), post.body) if link.include?(".gif")
       service.send_video(link, post.body) if link.include?(".mp4")
     end
 
@@ -86,8 +94,7 @@ class PostsController < InheritedResources::Base
     if gif.size <= 52428800
       return Faraday::UploadIO.new(gif.path, gif.type)
     else
-      redirect_to my_posts_path
-      #TODO flesh error, gif too big
+      return false
     end
   end
 
