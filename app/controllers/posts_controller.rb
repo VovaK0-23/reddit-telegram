@@ -30,17 +30,18 @@ class PostsController < InheritedResources::Base
     chat_id = post.chat.name
     image = Cloudinary::Uploader.upload(ActiveStorage::Blob.service.send(:path_for, post.image.key), resource_type: :auto) if post.image.present?
     service = TelegramService::TelegramClient.new(chat_id)
+    link = post.link
 
-    if post.link.blank?
+    if link.blank?
       if post.image.blank?
         service.send_message(post.body)
       else
         service.send_photo(image["secure_url"], post.body)
       end
     else
-      service.send_photo(post.link, post.body) if post.link.include?(".jpeg") or post.link.include?(".jpg") or post.link.include?(".png")
-      service.send_animation(post.link, post.body) if post.link.include?(".gif")
-      service.send_video(post.link, post.body) if post.link.include?(".mp4")
+      service.send_photo(valid_image(link, 95), post.body) if post.link.include?(".jpeg") or post.link.include?(".jpg") or post.link.include?(".png")
+      service.send_animation(valid_gif(link, 40), post.body) if link.include?(".gif")
+      service.send_video(link, post.body) if link.include?(".mp4")
     end
 
     if post.published_at?
@@ -66,6 +67,40 @@ class PostsController < InheritedResources::Base
 
   def post_params
     params.require(:post).permit(:title, :body, :published_at, :user_id, :image, :chat_id, :link)
+  end
+
+  def resize_image(link, resize_value)
+    image = MiniMagick::Image.open(link)
+    if image.size <= 5242880
+      return image.path
+    end
+    image.resize(resize_value.to_s + '%')
+    resize_image(link, resize_value - 5)
+  end
+
+  def resize_gif(link, resize_value)
+    gif = MiniMagick::Image.open(link)
+    if gif.size <= 20971520
+      return gif.path
+    end
+    gif.resize(resize_value.to_s + '%')
+    resize_gif(link, resize_value - 5)
+  end
+
+  def valid_image(link, resize_value)
+    image = MiniMagick::Image.open(link)
+    if image.size <= 5242880
+    return link
+    end
+    resize_image(link, resize_value)
+  end
+
+  def valid_gif(link, resize_value)
+    gif = MiniMagick::Image.open(link)
+    if gif.size <= 20971520
+      return link
+    end
+    resize_gif(link, resize_value)
   end
 
 end
