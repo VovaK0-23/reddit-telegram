@@ -1,3 +1,3 @@
 ActiveAdmin.register Chat do
-  permit_params :name, :user_id, :subreddit
+  permit_params :name, :subreddit, :user_id
 end

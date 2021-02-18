@@ -26,10 +26,10 @@ class PostsController < InheritedResources::Base
   def publish
     post = Post.find(params[:id])
     post.update(published_at: Time.zone.now)
-    chat = post.chat.id
-    chat_id = post.chat.name
+    chat_id = post.chat.id
+    chat = post.chat.name
     image = Cloudinary::Uploader.upload(ActiveStorage::Blob.service.send(:path_for, post.image.key), resource_type: :auto) if post.image.present?
-    service = TelegramService::TelegramClient.new(chat_id)
+    service = TelegramService::TelegramClient.new(chat)
     link = post.link
 
     if link.blank?
@@ -42,7 +42,7 @@ class PostsController < InheritedResources::Base
       if link.include?(".gif")
         file = valid_gif(link)
         if file == false
-          redirect_to my_posts_path(chat) and return
+          redirect_to my_posts_path(chat_id) and return
           #TODO flesh error, gif too big
         else
           service.send_animation(file, post.body)
@@ -54,10 +54,10 @@ class PostsController < InheritedResources::Base
 
     if post.published_at?
       flash[:notice] = 'Post was send'
-      redirect_to my_posts_path(chat)
+      redirect_to my_posts_path(chat_id)
     else
       flash.now[:alert] = 'You cannot send this post'
-      redirect_to my_posts_path(chat)
+      redirect_to my_posts_path(chat_id)
     end
   end
 
