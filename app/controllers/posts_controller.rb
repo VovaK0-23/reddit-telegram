@@ -65,12 +65,14 @@ class PostsController < InheritedResources::Base
   end
 
   def published
-    @posts = Post.published
+    chat = Chat.find(params[:id])
+    @posts = Post.published.where(user_id: current_user.id, chat_id: chat.id)
     render :my_posts
   end
 
   def unpublished
-    @posts = Post.unpublished
+    chat = Chat.find(params[:id])
+    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: chat.id)
     render :my_posts
   end
 
