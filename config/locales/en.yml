@@ -33,4 +33,7 @@ en:
   pages:
     home:
       first: "Hello world"
-
+  users:
+    sessions:
+      new:
+        log_in: "Log in"

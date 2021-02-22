@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get 'locale/:id', to: 'users#locale', as: :locale
+  get 'guest', to: 'users#guest_locale', as: :guest_locale
 
   get 'chats', to: 'chats#index', as: :chats
   get 'chats/new', to: 'chats#new', as: :new_chat

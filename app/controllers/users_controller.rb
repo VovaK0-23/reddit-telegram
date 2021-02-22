@@ -14,4 +14,9 @@ class UsersController < ApplicationController
 
     redirect_back(fallback_location: root_path)
   end
+
+  def guest_locale
+    session[:locale] = params
+    redirect_back(fallback_location: root_path)
+  end
 end
