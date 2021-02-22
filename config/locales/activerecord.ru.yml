@@ -1,0 +1,5 @@
+ru:
+  activerecord:
+    attributes:
+      chat:
+        name: "Название"

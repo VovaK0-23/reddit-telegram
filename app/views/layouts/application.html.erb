@@ -31,6 +31,13 @@
       <span class="navbar-text nav-text">
     Signed in as <%= current_user.email %>
       </span>
+      <span class="navbar-text nav-text">
+        <% if current_user.locale  == 'ru' %>
+          <%= link_to 'En', locale_path(current_user.id) %>
+        <% else %>
+          <%= link_to 'Ru', locale_path(current_user.id) %>
+        <% end %>
+      </span>
     <% else %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
