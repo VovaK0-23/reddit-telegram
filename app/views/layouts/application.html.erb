@@ -49,6 +49,10 @@
           </li>
         </ul>
       </div>
+      <span class="navbar-text nav-text">
+        <%= link_to 'Ru', guest_locale_path(locale: 'ru') %>
+        <%= link_to 'En', guest_locale_path(locale: 'en') %>
+      </span>
     <% end %>
     <span class="navbar-text nav-text message">
      <% flash.each do |name, msg| %>

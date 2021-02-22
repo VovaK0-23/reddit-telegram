@@ -31,6 +31,9 @@
 
 ru:
   pages:
-   home:
-    first: "Плейсхолдер"
-
+    home:
+      first: "Плейсхолдер"
+  users:
+    sessions:
+      new:
+        log_in: "Войти"
