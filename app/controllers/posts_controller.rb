@@ -2,8 +2,10 @@ class PostsController < InheritedResources::Base
 
   def index
     @chat = Chat.find(params[:id])
-    subreddit = Chat.find(params[:id]).subreddit
-    service = RedditService::RedditClient.new.receive_posts(subreddit, params[:after_token],[:before_token])
+    subreddit = @chat.subreddit + @chat.subreddit_sorting
+    limit = @chat.limit
+    time = @chat.time
+    service = RedditService::RedditClient.new.receive_posts(subreddit, limit, time, params[:after_token],[:before_token])
     @posts = service[:posts]
     @after_token = service[:after_token]
     @before_token = service[:before_token]
