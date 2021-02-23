@@ -28,7 +28,7 @@ class PostsController < InheritedResources::Base
   end
 
   def my_posts
-    @posts = Post.where(user_id: current_user.id, chat_id: set_chat.id)
+    @posts = Post.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
   end
 
   def publish
@@ -69,12 +69,11 @@ class PostsController < InheritedResources::Base
   end
 
   def published
-    @posts = Post.published.where(user_id: current_user.id, chat_id: set_chat.id)
-    render :my_posts
+    @posts = Post.published.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
   end
 
   def unpublished
-    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: set_chat.id)
+    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
     render :my_posts
   end
 

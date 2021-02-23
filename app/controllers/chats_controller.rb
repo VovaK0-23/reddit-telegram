@@ -48,6 +48,6 @@ class ChatsController < InheritedResources::Base
   private
 
   def chat_params
-    params.require(:chat).permit(:name, :user_id, :subreddit, :subreddit_sorting)
+    params.require(:chat).permit(:name, :user_id, :subreddit, :subreddit_sorting, :limit, :time)
   end
 end
