@@ -1,0 +1,12 @@
+en:
+  layouts:
+    chats: Chats
+    edit_profile: Edit profile
+    rom: ROM
+    language: Language
+    languages:
+      english: English
+      russian: Russian
+    sign_in: Sign in
+    sign_out: Sign out
+    sign_up: Sign up
