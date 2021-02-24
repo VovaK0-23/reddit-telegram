@@ -1,12 +1,12 @@
 ru:
   layouts:
     chats: Чаты
-    edit_profile: Эдит профайл
-    rom: Рома
+    edit_profile: Редактировать профиль
+    rom: ROM
     language: Язык
     languages:
-      english: Асашай
-      russian: Руске
-    sign_in: Залогиница
-    sign_out: Отлогиница
-    sign_up: Зарегаца
+      english: EN
+      russian: RU
+    sign_in: Войти
+    sign_out: Выйти
+    sign_up: Регистрация

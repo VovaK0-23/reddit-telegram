@@ -2,4 +2,22 @@ en:
   activerecord:
     attributes:
       chat:
-        name: "Name"
+        name: Name
+        subreddit: Subreddit
+        subreddit_sorting: Sort posts
+        time: Top (this option works only when TOP posts shown)
+        limit: Number of posts on page
+      post:
+        title: Title
+        body:  Body
+        link: Link
+      user:
+        password: Password
+        username: Username
+        email: Email
+        password_confirmation: Password confirmation
+        current_password: Current password
+    models:
+      chat: Chat
+      post: Post
+      user: User

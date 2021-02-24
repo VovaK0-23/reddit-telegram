@@ -32,8 +32,19 @@
 ru:
   pages:
     home:
-      first: "Плейсхолдер"
+      first: Плейсхолдер
+      second: Плейсхолдер 2
   users:
     sessions:
       new:
-        log_in: "Войти"
+        log_in: Войти
+        password: пароль
+        remember_me: Запомни меня
+        no_account: Ещё нету аккаунта?
+        forgot_password: Забыл пароль?
+    passwords:
+      new:
+        resend_confirmation: Отправить инструкции по восстановлению
+    registrations:
+      new:
+        have_account: Уже есть аккаунт?

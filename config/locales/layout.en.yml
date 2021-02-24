@@ -5,8 +5,8 @@ en:
     rom: ROM
     language: Language
     languages:
-      english: English
-      russian: Russian
+      english: EN
+      russian: RU
     sign_in: Sign in
     sign_out: Sign out
     sign_up: Sign up

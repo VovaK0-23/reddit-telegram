@@ -19,16 +19,28 @@ class PostsController < InheritedResources::Base
     @post = Post.create(post_params)
 
     if @post.persisted?
-      flash[:notice] = 'Post was saved'
+      flash[:notice] = t('.success')
       redirect_to posts_path
     else
-      flash.now[:alert] = 'You cannot save this post'
-      redirect_to posts_path
+      flash.now[:alert] = t('.error')
+      render 'index'
     end
   end
 
   def my_posts
     @posts = Post.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
+  end
+
+  def published
+    chat = Chat.find(params[:id])
+    @posts = Post.published.where(user_id: current_user.id, chat_id: chat.id).order(:created_at).reverse_order.page(params[:page])
+    render :my_posts
+  end
+
+  def unpublished
+    chat = Chat.find(params[:id])
+    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: chat.id).order(:created_at).reverse_order.page(params[:page])
+    render :my_posts
   end
 
   def publish
@@ -49,8 +61,8 @@ class PostsController < InheritedResources::Base
       if link.include?(".gif")
         file = valid_gif(link)
         if file == false
+          flash[:alert] = t('.gif_too_big')
           redirect_to my_posts_path(chat.id) and return
-          #TODO flesh error, gif too big
         else
           service.send_animation(file, post.body)
         end
@@ -60,21 +72,12 @@ class PostsController < InheritedResources::Base
     end
 
     if post.published_at?
-      flash[:notice] = 'Post was send'
-      redirect_to my_posts_path(chat.id)
+      flash[:notice] = t('.success')
+      redirect_to my_posts_path(chat_id)
     else
-      flash.now[:alert] = 'You cannot send this post'
-      redirect_to my_posts_path(chat.id)
+      flash.now[:alert] = t('.error')
+      redirect_to my_posts_path(chat_id)
     end
-  end
-
-  def published
-    @posts = Post.published.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
-  end
-
-  def unpublished
-    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
-    render :my_posts
   end
 
   private

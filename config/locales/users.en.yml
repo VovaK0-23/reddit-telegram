@@ -1,0 +1,15 @@
+ en:
+   users:
+     registrations:
+       edit:
+         title: Edit profile
+         email: email
+         username: username
+         new_password: new password
+         password_confirmation: password confirmation
+         current_password: current password
+         update_btn: Update
+         back: back
+         cancel_account: Cancel account
+         unhappy: Unhappy?
+         confirm: Are you sure?

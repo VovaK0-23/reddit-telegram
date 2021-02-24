@@ -29,9 +29,6 @@
         </ul>
       </div>
       <span class="navbar-text nav-text">
-    Signed in as <%= current_user.email %>
-      </span>
-      <span class="navbar-text nav-text">
         <% if current_user.locale  == 'ru' %>
           <%= link_to t('layouts.languages.english'), url_for(locale: 'en') %>
         <% else %>
