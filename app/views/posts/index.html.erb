@@ -10,6 +10,8 @@
         <p><%= post.first['title'] %></p>
         <% if post.first['is_video'] == true %>
           <%= video_tag post.first['media']['reddit_video']['fallback_url'], :controls => true %>
+        <% elsif post.first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
+          <%= video_tag post.first['preview']['reddit_video_preview']['fallback_url'], :controls => true %>
         <% else %>
           <%= image_tag post.first['url']%>
         <% end %>
@@ -17,6 +19,8 @@
           <%= f.hidden_field :body, value: post.first['title']%>
           <% if post.first['is_video'] == true %>
             <%= f.hidden_field :link, value: post.first['media']['reddit_video']['fallback_url']%>
+          <% elsif post.first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
+            <%= f.hidden_field :link, value: post.first['preview']['reddit_video_preview']['fallback_url']%>
           <% else %>
             <%= f.hidden_field :link, value: post.first['url']%>
           <% end %>
@@ -29,5 +33,21 @@
         <% end %>
       </div>
     <% end %>
+    <div class="container">
+      <div class="row">
+        <% if params.has_key?(:after_token)  %>
+          <%= button_to 'previous', posts_path,
+                        method: :get,
+                        params: { before_token: @before_token },
+                        class: "btn btn-secondary",
+                        style: "margin-right: 15px"%>
+        <% end %>
+        <%= button_to 'next', posts_path,
+                      method: :get,
+                      params: { after_token: @after_token },
+                      class: "btn btn-secondary",
+                      style: "margin-right: 15px"%>
+      </div>
+    </div>
   </div>
 </div>
