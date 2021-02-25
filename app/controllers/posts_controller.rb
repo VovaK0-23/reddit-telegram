@@ -1,11 +1,15 @@
 class PostsController < InheritedResources::Base
 
-  def index
+  def set_chat
     @chat = Chat.find(params[:id])
-    subreddit = @chat.subreddit + @chat.subreddit_sorting
-    limit = @chat.limit
-    time = @chat.time
-    service = RedditService::RedditClient.new.receive_posts(subreddit, limit, time, params[:after_token],[:before_token])
+  end
+
+  def index
+    service = RedditService::RedditClient.new.receive_posts(
+        set_chat.subreddit + set_chat.subreddit_sorting,
+        set_chat.limit,
+        set_chat.time,
+        params[:after_token],[:before_token])
     @posts = service[:posts]
     @after_token = service[:after_token]
     @before_token = service[:before_token]
@@ -24,17 +28,15 @@ class PostsController < InheritedResources::Base
   end
 
   def my_posts
-    chat = Chat.find(params[:id])
-    @posts = Post.where(user_id: current_user.id, chat_id: chat.id)
+    @posts = Post.where(user_id: current_user.id, chat_id: set_chat.id)
   end
 
   def publish
     post = Post.find(params[:id])
     post.update(published_at: Time.zone.now)
-    chat_id = post.chat.id
-    chat = post.chat.name
+    chat = post.chat
     image = Cloudinary::Uploader.upload(ActiveStorage::Blob.service.send(:path_for, post.image.key), resource_type: :auto) if post.image.present?
-    service = TelegramService::TelegramClient.new(chat)
+    service = TelegramService::TelegramClient.new(chat.name)
     link = post.link
 
     if link.blank?
@@ -47,7 +49,7 @@ class PostsController < InheritedResources::Base
       if link.include?(".gif")
         file = valid_gif(link)
         if file == false
-          redirect_to my_posts_path(chat_id) and return
+          redirect_to my_posts_path(chat.id) and return
           #TODO flesh error, gif too big
         else
           service.send_animation(file, post.body)
@@ -59,22 +61,20 @@ class PostsController < InheritedResources::Base
 
     if post.published_at?
       flash[:notice] = 'Post was send'
-      redirect_to my_posts_path(chat_id)
+      redirect_to my_posts_path(chat.id)
     else
       flash.now[:alert] = 'You cannot send this post'
-      redirect_to my_posts_path(chat_id)
+      redirect_to my_posts_path(chat.id)
     end
   end
 
   def published
-    chat = Chat.find(params[:id])
-    @posts = Post.published.where(user_id: current_user.id, chat_id: chat.id)
+    @posts = Post.published.where(user_id: current_user.id, chat_id: set_chat.id)
     render :my_posts
   end
 
   def unpublished
-    chat = Chat.find(params[:id])
-    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: chat.id)
+    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: set_chat.id)
     render :my_posts
   end
 
