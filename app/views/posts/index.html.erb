@@ -56,13 +56,12 @@
     <% end %>
     <div class="container">
       <div class="row">
-        <% if params.has_key?(:after_token)  %>
+        <% if params.has_key?(:after_token) %>
           <%= button_to t('.previous'), posts_path,
                         method: :get,
                         params: { before_token: @before_token },
                         class: "btn btn-secondary",
                         style: "margin-right: 15px"%>
-
         <% end %>
         <%= button_to t('.next'), posts_path,
                       method: :get,

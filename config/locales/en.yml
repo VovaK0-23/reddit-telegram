@@ -38,7 +38,7 @@ en:
     sessions:
       new:
         log_in: Log in
-        password: password
+        password: Password
         remember_me: Remember me
         no_account: Don't have an account?
         forgot_password: Forgot your password?

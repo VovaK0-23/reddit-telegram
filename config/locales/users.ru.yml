@@ -3,11 +3,11 @@
      registrations:
        edit:
          title: Редактировать профиль
-         email: почта
-         username: имя пользователя
-         new_password: новый пароль
-         password_confirmation: подтверждение пароля
-         current_password: текущий пароль
+         email: Почта
+         username: Имя пользователя
+         new_password: Новый пароль
+         password_confirmation: Подтверждение пароля
+         current_password: Текущий пароль
          update_btn: Обновить
          back: назад
          cancel_account: Удалить аккаунт

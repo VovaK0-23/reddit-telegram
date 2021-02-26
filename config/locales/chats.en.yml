@@ -38,3 +38,5 @@
      update:
        success: Chat was updated!
        error: Please fill all fields correctly!
+     destroy:
+       error: 'Chat %{chat_name} was deleted'

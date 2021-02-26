@@ -32,14 +32,12 @@ class PostsController < InheritedResources::Base
   end
 
   def published
-    chat = Chat.find(params[:id])
-    @posts = Post.published.where(user_id: current_user.id, chat_id: chat.id).order(:created_at).reverse_order.page(params[:page])
+    @posts = Post.published.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
     render :my_posts
   end
 
   def unpublished
-    chat = Chat.find(params[:id])
-    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: chat.id).order(:created_at).reverse_order.page(params[:page])
+    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
     render :my_posts
   end
 
@@ -73,10 +71,10 @@ class PostsController < InheritedResources::Base
 
     if post.published_at?
       flash[:notice] = t('.success')
-      redirect_to my_posts_path(chat_id)
+      redirect_to my_posts_path(chat.id)
     else
       flash.now[:alert] = t('.error')
-      redirect_to my_posts_path(chat_id)
+      redirect_to my_posts_path(chat.id)
     end
   end
 
