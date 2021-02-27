@@ -12,7 +12,7 @@
         <% if post.first['crosspost_parent_list'].present?%>
         <% if post.first['crosspost_parent_list'].first['is_video'] == true %>
           <%= video_tag post.first['crosspost_parent_list'].first['secure_media']['reddit_video']['fallback_url'], :controls => true %>
-        <% elsif post.first['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post.first['crosspost_parent_list']['url_overridden_by_dest'].include?(".gifv") %>
+        <% elsif post.first['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post.first['crosspost_parent_list'].first['url_overridden_by_dest'].include?(".gifv") %>
           <%= video_tag post.first['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url'], :controls => true %>
         <% else %>
           <%= image_tag post.first['crosspost_parent_list'].first['url']%>

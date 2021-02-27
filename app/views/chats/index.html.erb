@@ -1,30 +1,34 @@
-<%= render "include/main/notification"%>
-<table class="table table-hover table-dark">
-  <thead>
-  <tr>
-    <th scope="col"><%= t(".name") %></th>
-    <th scope="col"><%= t(".posts") %></th>
-    <th scope="col"><%= t(".edit") %></th>
-    <th scope="col"><%= t(".delete") %></th>
-  </tr>
-  </thead>
-  <% @chat.each do |chat| %>
-    <tbody>
-    <tr data-chat_id="<%= chat.id %>">
-      <th scope="col"><%= link_to chat.name, chat_path(chat), class: "text-info" %></th>
-      <th scope="col"><%= button_to t(".posts"), posts_path(chat), method: :get, class: "text-info" %></th>
-      <th scope="col"><%= button_to t(".edit"), edit_chat_path(chat), method: :get, class: "text-info" %></th>
-      <th scope="col"><%= button_to t(".delete"), delete_chat_path(chat), method: :delete, class: "text-info" %></th>
-    </tr>
-    </tbody>
-  <% end %>
-</table>
-<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-toolbar mb-2" role="group" aria-label="First group">
-
-    <%= button_to t('.btn_new_chat'), new_chat_path,
-                  method: :get,
-                  class: "btn btn-secondary",
-                  style: "margin-right: 15px" %>
+<% @chat.each do |chat| %>
+  <div class="container-home" id="home-container">
+    <div class="text-center center tb row" >
+      <div class="col-2">
+        <%= link_to chat.name, chat_path(chat), class: "link" %>
+      </div>
+      <div class="col-3 two">
+        <%= button_to t(".posts"), posts_path(chat), method: :get, class: "tb-btn" %>
+      </div>
+      <div class="col-3 two">
+        <%= button_to t(".edit"), edit_chat_path(chat), method: :get, class: "tb-btn" %>
+      </div>
+      <div class="col-3 two">
+        <%= button_to t(".delete"), delete_chat_path(chat), method: :delete, class: "tb-btn" %>
+      </div>
+      <div class="dropdown q one">
+        <button class="tb-btn col dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= t(".posts") %>
+        </button>
+        <div class="dropdown-menu c" >
+          <%= button_to t(".posts"), posts_path(chat), method: :get, class: "tb-btn dropdown-item" %>
+          <%= button_to t(".edit"), edit_chat_path(chat), method: :get, class: "tb-btn dropdown-item" %>
+          <%= button_to t(".delete"), delete_chat_path(chat), method: :delete, class: "tb-btn dropdown-item" %>
+        </div>
+      </div>
+    </div>
   </div>
+<% end %>
+<div class="text-center">
+  <%= button_to t('.btn_new_chat'), new_chat_path,
+                method: :get,
+                class: "bg-btn"  %>
 </div>
+
