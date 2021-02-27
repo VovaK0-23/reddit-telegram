@@ -8,3 +8,10 @@
 <% if alert %>
   <p class="alert alert-danger text-center"><%= alert %></p>
 <% end %>
+<% if error %>
+  <div class="container-home" id="error-container">
+    <div class="center" >
+      <p class="notice text-center"><%= error %></p>
+    </div>
+  </div>
+<% end %>

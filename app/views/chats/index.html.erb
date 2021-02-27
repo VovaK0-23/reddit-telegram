@@ -1,7 +1,7 @@
 <% @chat.each do |chat| %>
   <div class="container-home" id="home-container">
     <div class="text-center center tb row" >
-      <div class="col-2">
+      <div class="col-3">
         <%= link_to chat.name, chat_path(chat), class: "link" %>
       </div>
       <div class="col-3 two">
@@ -26,9 +26,10 @@
     </div>
   </div>
 <% end %>
+<div class="container-app">
 <div class="text-center">
   <%= button_to t('.btn_new_chat'), new_chat_path,
                 method: :get,
                 class: "bg-btn"  %>
 </div>
-
+</div>

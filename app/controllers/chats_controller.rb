@@ -14,7 +14,7 @@ class ChatsController < InheritedResources::Base
       flash[:notice] = t('.success')
       redirect_to chats_path(current_user.id)
     else
-      flash.now[:alert] = t('.error')
+      flash.now[:error] = t('.error')
       render :new
     end
   end
@@ -33,7 +33,7 @@ class ChatsController < InheritedResources::Base
       flash[:notice] = t('.success')
       redirect_to chats_path
     else
-      flash[:alert] = t('.error')
+      flash[:error] = t('.error')
       render :edit
     end
   end
