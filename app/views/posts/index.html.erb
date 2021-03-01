@@ -1,74 +1,72 @@
-<div class="container">
-  <div class="jumbotron text-center text-white" id="home-container">
-    <h3 id="home-header">Reddit telegram</h3>
-    <%= render 'include/main/notification' %>
-    <hr class="my-4" id="home-hr">
-    <%= link_to t('.my_posts'), my_posts_path, :style=>'color: white;', class: "nav-link active nounderline" %>
-    <hr class="my-4" id="home-hr">
-    <% @posts.each do |post|%>
-      <% next if post.first['stickied'] == true or post.first['is_gallery'] == true%>
-      <div class="jumbotron text-center text-white" id="home-text">
-        <p><%= post.first['title'] %></p>
-        <% if post.first['crosspost_parent_list'].present?%>
+<div class="se-pre-con"></div>
+<div class="container-home" id="home-container">
+  <div class="text-center center" >
+    <%= link_to t('.my_posts'), my_posts_path, class: "bg-btn btn" %>
+  </div>
+</div>
+<% @posts.each do |post|%>
+  <% next if post.first['stickied'] == true or post.first['is_gallery'] == true%>
+  <div class="container-app">
+    <div class="jumbotron text-center text-white" id="home-container">
+      <p><%= post.first['title'] %></p>
+      <% if post.first['crosspost_parent_list'].present?%>
         <% if post.first['crosspost_parent_list'].first['is_video'] == true %>
-          <%= video_tag post.first['crosspost_parent_list'].first['secure_media']['reddit_video']['fallback_url'], :controls => true %>
+          <%= video_tag post.first['crosspost_parent_list'].first['secure_media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 100%;"%>
         <% elsif post.first['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post.first['crosspost_parent_list'].first['url_overridden_by_dest'].include?(".gifv") %>
-          <%= video_tag post.first['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url'], :controls => true %>
+          <%= video_tag post.first['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 100%;" %>
         <% else %>
-          <%= image_tag post.first['crosspost_parent_list'].first['url']%>
+          <%= image_tag post.first['crosspost_parent_list'].first['url'], style: "max-width: 100%;"%>
         <% end %>
+      <% else %>
+        <% if post.first['is_video'] == true %>
+          <%= video_tag post.first['media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 100%;"%>
+        <% elsif post.first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
+          <%= video_tag post.first['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 100%;" %>
+        <% else %>
+          <%= image_tag post.first['url'], style: "max-width: 100%;"%>
+        <% end %>
+      <% end %>
+      <%= form_for :post do |f| %>
+        <%= f.hidden_field :body, value: post.first['title']%>
+        <% if post.first['crosspost_parent_list'].present?%>
+          <% if post.first['crosspost_parent_list'].first['is_video'] == true %>
+            <%= f.hidden_field :link, value: post.first['crosspost_parent_list'].first['media']['reddit_video']['fallback_url']%>
+          <% elsif post.first['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
+            <%= f.hidden_field :link, value: post.first['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url']%>
           <% else %>
+            <%= f.hidden_field :link, value: post.first['crosspost_parent_list'].first['url']%>
+          <% end %>
+        <% else %>
           <% if post.first['is_video'] == true %>
-            <%= video_tag post.first['media']['reddit_video']['fallback_url'], :controls => true %>
-          <% elsif post.first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
-            <%= video_tag post.first['preview']['reddit_video_preview']['fallback_url'], :controls => true %>
-          <% else %>
-            <%= image_tag post.first['url']%>
-          <% end %>
-          <% end %>
-        <%= form_for :post do |f| %>
-          <%= f.hidden_field :body, value: post.first['title']%>
-          <% if post.first['crosspost_parent_list'].present?%>
-            <% if post.first['crosspost_parent_list'].first['is_video'] == true %>
-              <%= f.hidden_field :link, value: post.first['crosspost_parent_list'].first['media']['reddit_video']['fallback_url']%>
-            <% elsif post.first['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
-              <%= f.hidden_field :link, value: post.first['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url']%>
-            <% else %>
-              <%= f.hidden_field :link, value: post.first['crosspost_parent_list'].first['url']%>
-            <% end %>
-          <% else %>
-            <% if post.first['is_video'] == true %>
             <%= f.hidden_field :link, value: post.first['media']['reddit_video']['fallback_url']%>
-            <% elsif post.first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
+          <% elsif post.first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
             <%= f.hidden_field :link, value: post.first['preview']['reddit_video_preview']['fallback_url']%>
-            <% else %>
+          <% else %>
             <%= f.hidden_field :link, value: post.first['url']%>
           <% end %>
         <% end %>
-          <%= f.hidden_field :user_id, value: current_user.id%>
-          <%= f.hidden_field :chat_id, value: @chat.id%>
-          <div class="col-sm-10">
-            <%= f.button t('.save'), class: "btn btn-secondary",
-                         style: "margin-top: 15px" %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="container">
-      <div class="row">
-        <% if params.has_key?(:after_token) %>
-          <%= button_to t('.previous'), posts_path,
-                        method: :get,
-                        params: { before_token: @before_token },
-                        class: "btn btn-secondary",
-                        style: "margin-right: 15px"%>
-        <% end %>
-        <%= button_to t('.next'), posts_path,
-                      method: :get,
-                      params: { after_token: @after_token },
-                      class: "btn btn-secondary",
-                      style: "margin-right: 15px"%>
-      </div>
+        <%= f.hidden_field :user_id, value: current_user.id%>
+        <%= f.hidden_field :chat_id, value: @chat.id%>
+        <div class="text-center center" style="margin-bottom: -20px">
+          <%= f.button t('.save'), class: "bg-btn"%>
+        </div>
+      <% end %>
     </div>
-  </div>
+<% end %>
+<div class="c">
+  <div class="ft-btn btn-up-right x"></div>
+</div>
+<div class="footer row">
+  <% if params.has_key?(:after_token) %>
+    <%= button_to t('.previous'), posts_path,
+                  method: :get,
+                  params: { before_token: @before_token },
+                  class: "ft-btn btn-prv"%>
+  <% end %>
+  <div id="up" class="ft-btn btn-up x"></div>
+  <%= button_to t('.next'), posts_path,
+                method: :get,
+                params: { after_token: @after_token },
+                class: "ft-btn btn-nxt"%>
+</div>
 </div>

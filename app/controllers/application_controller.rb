@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_locale
   add_flash_types :error
+
   private
 
   def set_locale

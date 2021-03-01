@@ -7,6 +7,8 @@
        delete: Удалить
        btn_new_chat: Новый чат
      edit:
+       name_example: Название (@example)
+       subreddit_example: Сабредит (r/example)
        title: Настройки чата
        hot: Горячие
        new: Новые

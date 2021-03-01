@@ -8,28 +8,21 @@
       <div class="card-body">
         <%= form_for :chat do |f| %>
           <div class="input-group form-group">
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: t('activerecord.attributes.chat.name')%>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: t('chats.edit.name_example')%>
           </div>
           <div class="input-group form-group">
-            <%= f.text_field :subreddit, autofocus: true, autocomplete: "subreddit", class: "form-control", placeholder: t('activerecord.attributes.chat.subreddit') %>
-          </div>
-          <div class="input-group">
-            <%= f.label :subreddit_sorting, class: "form-label"%>
+            <%= f.text_field :subreddit, autofocus: true, autocomplete: "subreddit", class: "form-control", placeholder: t('chats.edit.subreddit_example') %>
           </div>
           <div class="form-group">
-            <%= f.select :subreddit_sorting, [[(t'.hot'), "/hot"], [(t'.new'), "/new"], [(t'.rising'), "/rising"], [(t'.top'), "/top"]]%>
+            <%= f.number_field :limit, in:1...100, class: "number-field", placeholder: t('activerecord.attributes.chat.limit') %>
           </div>
-          <div class="input-group">
-            <%= f.label :time, class: "form-label"%>
+          <div class="custom-selec">
+            <%= f.select :subreddit_sorting, [[(t'activerecord.attributes.chat.subreddit_sorting')], [(t'.top'), "/top"], [(t'.hot'), "/hot"], [(t'.new'), "/new"], [(t'.rising'), "/rising"]]%>
           </div>
-          <div class="form-group">
-            <%= f.select :time, [[(t'.now'), "hour"], [(t'.today'), "day"], [(t'.week'), "week"], [(t'.month'), "month"], [(t'.year'), "year"], [(t'.all'), "all"]] %>
+          <div id="hidden_div">
+          <div class="custom-selec">
+            <%= f.select :time, [[(t'.now')], [(t'.now'), "hour"], [(t'.today'), "day"], [(t'.week'), "week"], [(t'.month'), "month"], [(t'.year'), "year"], [(t'.all'), "all"]] %>
           </div>
-          <div class="input-group">
-            <%= f.label :limit, class: "form-label" %>
-          </div>
-          <div class="form-group">
-            <%= f.number_field :limit, in:1...100 %>
           </div>
           <%= f.hidden_field :user_id, value: current_user.id %>
           </div>

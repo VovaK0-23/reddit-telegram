@@ -11,7 +11,7 @@
 
 //Navbar
 .space-nav{
-  height: 20%;
+  height: 139px;
 }
 .no-underline{
   text-decoration: none !important;
@@ -27,19 +27,9 @@
   padding-left: 1px !important;
   padding-right: 1px !important;
 }
-.nav-nav{
-  margin-right: 0;
-}
 .sign-out{
   position: absolute;
   right: 1px;
-}
-.nav-center{
-  width: 500px;
-  margin: auto 28.5% auto auto;
-}
-.li-margin{
-  margin: auto;
 }
 .navbar-text{
   cursor: default;
@@ -91,12 +81,14 @@
   border: none !important;
   border-bottom: 0.1px solid rgba(255,255,255,0.6) !important;
   border-radius: 0 !important;
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
 }
 .form-control::placeholder{
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.6);
 }
 .form-label{
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.6);
   margin: 0
 }
  //Margin after remember checkbox
@@ -107,6 +99,16 @@
 .card-footer{
   margin-bottom: 30px;
   border-top: 0;
+}
+
+.number-field{
+  font-family: 'Montserrat', sans-serif !important;
+  width: 100% !important;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
+  height: 34px;
+  border-radius: 5px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .alert-margin{
@@ -134,6 +136,10 @@
   width: auto;
   font-size: 14px !important;
   font-family: 'Montserrat', sans-serif !important;
+}
+.bt{
+  position: relative;
+  top: 6px;
 }
 .bg-btn:hover{
   background-color: white !important;
@@ -234,6 +240,7 @@ visibility: collapse;
 
 @-moz-document url-prefix(){
 .q{
+  position: relative;
   bottom: 5px !important;
   left: 40% !important;
   }
@@ -244,4 +251,51 @@ visibility: collapse;
 }
 .c{
   background-color: rgba(0, 0, 0, 0.8);
+}
+.footer {
+  position: relative;
+  bottom: 19px;
+  max-width: 960px;
+  width: 100%;
+  margin: auto;
+  height: 2.1rem;
+}
+.ft-btn{
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: none !important;
+  font-size:0 !important;
+  border-radius: 0 !important;
+  position: absolute;
+}
+.btn-nxt {
+  right: 0;
+  background: transparent url(r.png) no-repeat !important;
+}
+.btn-prv {
+  left: 0;
+  background: transparent url(l.png) no-repeat !important;
+}
+.btn-up {
+  left: 0;
+  background: transparent url(up.png) no-repeat !important;
+}
+.btn-up-center{
+  left: 48.2%;
+  background: transparent url(up.png) no-repeat !important;
+}
+.btn-up-right{
+  position: fixed;
+  bottom: 15%;
+  background: transparent url(up.png) no-repeat !important;
+}
+.c{
+  position: relative;
+  float: right;
+  right: 2.1rem;
 }
