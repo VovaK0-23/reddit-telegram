@@ -1,12 +1,13 @@
-<div class="container-home" id="home-container">
+<div class="se-pre-con"></div>
+<div class="container-home posts" id="home-container">
   <div class="justify-content-center center row" >
-    <div class= "mx-3">
-      <%= link_to t('.all'), my_posts_path,
+    <div class="mx-3">
+      <%= link_to t('.published'), published_path,
                   method: :get,
                   class: "bg-btn no-underline bt"%>
     </div>
-    <div class="mx-3">
-      <%= link_to t('.published'), published_path,
+    <div class= "mx-3 text-center">
+      <%= link_to t('.all'), my_posts_path,
                   method: :get,
                   class: "bg-btn no-underline bt"%>
     </div>
@@ -23,9 +24,9 @@
       <p><%= post.body %></p>
       <% if post.link %>
         <% if post.link.include?(".mp4")%>
-          <%= video_tag post.link, :controls => true, style: "max-width: 100%;"%>
+          <%= video_tag post.link, :controls => true, style: "max-width: 98%;"%>
         <% else %>
-          <%= image_tag post.link, style: "max-width: 100%;"%>
+          <%= image_tag post.link, style: "max-width: 98%;"%>
         <% end %>
       <% end %>
       <div class="text-center center" style="margin-bottom: -20px">
@@ -40,7 +41,7 @@
 </div>
 <div class="footer row">
   <div id="up" class="ft-btn btn-up x"></div>
+  <%= paginate @posts%>
 </div>
-<%= paginate @posts%>
 </div>
 

@@ -1,5 +1,5 @@
 <div>
-  <div class="container card-container">
+  <div class="container card-container chat-form">
     <div class="card card-sign">
       <div class="card-header">
         <h2><%= t'.title'%></h2>
@@ -20,9 +20,9 @@
             <%= f.select :subreddit_sorting, [[(t'activerecord.attributes.chat.subreddit_sorting')], [(t'.top'), "/top"], [(t'.hot'), "/hot"], [(t'.new'), "/new"], [(t'.rising'), "/rising"]]%>
           </div>
           <div id="hidden_div">
-          <div class="custom-selec">
-            <%= f.select :time, [[(t'.now')], [(t'.now'), "hour"], [(t'.today'), "day"], [(t'.week'), "week"], [(t'.month'), "month"], [(t'.year'), "year"], [(t'.all'), "all"]] %>
-          </div>
+            <div class="custom-selec">
+              <%= f.select :time, [[(t'.now')], [(t'.now'), "hour"], [(t'.today'), "day"], [(t'.week'), "week"], [(t'.month'), "month"], [(t'.year'), "year"], [(t'.all'), "all"]] %>
+            </div>
           </div>
           <%= f.hidden_field :user_id, value: current_user.id %>
           </div>

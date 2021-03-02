@@ -1,7 +1,7 @@
 <div class="se-pre-con"></div>
-<div class="container-home" id="home-container">
+<div class="container-home posts posts-index" id="home-container">
   <div class="text-center center" >
-    <%= link_to t('.my_posts'), my_posts_path, class: "bg-btn btn" %>
+    <%= link_to t('.my_posts'), my_posts_path, class: "bg-btn btn", id: "#myPosts" %>
   </div>
 </div>
 <% @posts.each do |post|%>
@@ -11,19 +11,19 @@
       <p><%= post.first['title'] %></p>
       <% if post.first['crosspost_parent_list'].present?%>
         <% if post.first['crosspost_parent_list'].first['is_video'] == true %>
-          <%= video_tag post.first['crosspost_parent_list'].first['secure_media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 100%;"%>
+          <%= video_tag post.first['crosspost_parent_list'].first['secure_media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 98%;"%>
         <% elsif post.first['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post.first['crosspost_parent_list'].first['url_overridden_by_dest'].include?(".gifv") %>
-          <%= video_tag post.first['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 100%;" %>
+          <%= video_tag post.first['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 98%;" %>
         <% else %>
-          <%= image_tag post.first['crosspost_parent_list'].first['url'], style: "max-width: 100%;"%>
+          <%= image_tag post.first['crosspost_parent_list'].first['url'], style: "max-width: 98%;"%>
         <% end %>
       <% else %>
         <% if post.first['is_video'] == true %>
-          <%= video_tag post.first['media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 100%;"%>
+          <%= video_tag post.first['media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 98%;"%>
         <% elsif post.first['domain'] == "i.imgur.com" && post.first['url_overridden_by_dest'].include?(".gifv") %>
-          <%= video_tag post.first['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 100%;" %>
+          <%= video_tag post.first['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 98%;" %>
         <% else %>
-          <%= image_tag post.first['url'], style: "max-width: 100%;"%>
+          <%= image_tag post.first['url'], style: "max-width: 98%;"%>
         <% end %>
       <% end %>
       <%= form_for :post do |f| %>
