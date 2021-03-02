@@ -1,16 +1,17 @@
 <div class="container">
   <div class="jumbotron text-center text-white" id="home-container">
     <h3 id="home-header">Reddit telegram</h3>
+    <%= render 'include/main/notification' %>
     <hr class="my-4" id="home-hr">
-    <%= button_to 'all', my_posts_path,
+    <%= button_to t('.all'), my_posts_path,
                   method: :get,
                   class: "btn btn-secondary",
                   style: "margin-right: 15px"%>
-    <%= button_to 'published', published_path,
+    <%= button_to t('.published'), published_path,
                   method: :get,
                   class: "btn btn-secondary",
                   style: "margin-right: 15px"%>
-    <%= button_to 'unpublished', unpublished_path,
+    <%= button_to t('.unpublished'), unpublished_path,
                   method: :get,
                   class: "btn btn-secondary",
                   style: "margin-right: 15px"%>
@@ -19,17 +20,18 @@
       <div class="jumbotron text-center text-white" id="home-text">
         <p><%= post.body %></p>
         <% if post.link %>
-          <% if post.link.to_s.include?(".mp4")%>
+          <% if post.link.include?(".mp4")%>
             <%= video_tag post.link, :controls => true %>
           <% else %>
             <%= image_tag post.link%>
           <% end %>
         <% end %>
-        <%= button_to post.published_at? ? 'Send again' : 'Publish', publish_path(post),
+        <%= button_to post.published_at? ? t('.send_again') : t('.publish'), publish_path(post),
                       method: :post,
                       class: "btn btn-secondary",
                       style: "margin-right: 15px" %>
       </div>
     <% end %>
+    <%= paginate @posts %>
   </div>
 </div>

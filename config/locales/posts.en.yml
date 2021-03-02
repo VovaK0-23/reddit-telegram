@@ -1,0 +1,20 @@
+ en:
+   posts:
+     index:
+       my_posts: My posts
+       save: save
+       previous: Previous
+       next: Next page
+     my_posts:
+       all: All
+       published: Published
+       unpublished: Unpublished
+       send_again: Send again
+       publish: Publish
+     create:
+       success: Post was saved
+       error: You cannot save this post
+     publish:
+       gif_too_big: This gif is too big
+       success: Post was send
+       error: You cannot send this post

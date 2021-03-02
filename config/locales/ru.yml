@@ -29,22 +29,22 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
+ru:
   pages:
     home:
-      first: Hello world
-      second: Placeholder
+      first: Плейсхолдер
+      second: Плейсхолдер 2
   users:
     sessions:
       new:
-        log_in: Log in
-        password: password
-        remember_me: Remember me
-        no_account: Don't have an account?
-        forgot_password: Forgot your password?
+        log_in: Войти
+        password: пароль
+        remember_me: Запомни меня
+        no_account: Ещё нету аккаунта?
+        forgot_password: Забыл пароль?
     passwords:
       new:
-        resend_confirmation: Resend confirmation instructions
+        resend_confirmation: Отправить инструкции по восстановлению
     registrations:
       new:
-        have_account: Already have an account?
+        have_account: Уже есть аккаунт?

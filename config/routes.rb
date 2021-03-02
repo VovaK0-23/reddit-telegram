@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'pages#home'
+
   get 'chats', to: 'chats#index', as: :chats
   get 'chats/new', to: 'chats#new', as: :new_chat
   post 'chats/new', to: 'chats#create', as: :create_chat

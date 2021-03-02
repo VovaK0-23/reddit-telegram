@@ -1,0 +1,23 @@
+ru:
+  activerecord:
+    attributes:
+      chat:
+        name: Название
+        subreddit: Сабредит
+        subreddit_sorting: Сортировать посты
+        time: Топ (эта опция работает только когда выбраны ТОП посты)
+        limit: Количество постов на странице
+      post:
+        title: Заголовок
+        body: Текст
+        link: Ссылкa
+      user:
+        password: Пароль
+        username: Имя пользователя
+        email: Почта
+        password_confirmation: Подтверждение пароля
+        current_password: Текущий пароль
+    models:
+      chat: Чат
+      post: Пост
+      user: Юзер

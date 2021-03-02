@@ -1,0 +1,20 @@
+ ru:
+   posts:
+     index:
+       my_posts: Мои посты
+       save: сохранить
+       previous: Предыдущая
+       next: Следующая страница
+     my_posts:
+       all: Все
+       published: Опубликованные
+       unpublished: Не опубликованные
+       send_again: Отправить опять
+       publish: Опубликовать
+     create:
+       success: Пост сохранён
+       error: Вы не можете мохранить этот пост
+     publish:
+       gif_too_big: Эта гифка слишком большая
+       success: Пост отправлен
+       error: Этот пост нельзя отправить

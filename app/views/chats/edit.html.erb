@@ -1,8 +1,15 @@
 <div class="col-sm-12 my-auto">
-  <h2 style="color: white; margin: 0 auto"></h2>
+  <h2 style="color: white; margin: 0 auto"><%= t'.title'%></h2>
+
+  <% @chat.errors.each do |attr, msg| %>
+    <div class="alert alert-danger" role="alert">
+      <%= attr %> <%= msg %>
+    </div>
+  <% end %>
+
   <%= form_for @chat, url: update_chat_path, method: :put do |f| %>
     <div class="col-sm-10">
-      <%= f.label :Chat %>
+      <%= f.label :name %>
     </div>
     <div class="col-sm-10">
       <%= f.text_field :name %>
@@ -14,19 +21,19 @@
       <%= f.text_field :subreddit %>
     </div>
     <div class="col-sm-10">
-      <%= f.label :Sort_posts %>
+      <%= f.label :subreddit_sorting %>
     </div>
     <div class="col-sm-10">
-      <%= f.select :subreddit_sorting, [["HOT", "/hot"], ["NEW", "/new"], ["RISING", "/rising"], ["TOP", "/top"]] %>
+      <%= f.select :subreddit_sorting, [[(t'.hot'), "/hot"], [(t'.new'), "/new"], [(t'.rising'), "/rising"], [(t'.top'), "/top"]] %>
     </div>
     <div class="col-sm-10">
-      <%= f.label :Top %>
+      <%= f.label :time %>
     </div>
     <div class="col-sm-10">
-      <%= f.select :time, [["Now", "hour"], ["Today", "day"], ["This week", "week"], ["This month", "month"], ["This year", "year"], ["All time", "all"]] %>
+      <%= f.select :time, [[(t'.now'), "hour"], [(t'.today'), "day"], [(t'.week'), "week"], [(t'.month'), "month"], [(t'.year'), "year"], [(t'.all'), "all"]] %>
     </div>
     <div class="col-sm-10">
-      <%= f.label :Number_of_posts_on_page %>
+      <%= f.label :limit %>
     </div>
     <div class="col-sm-10">
       <%= f.number_field :limit, in:1...100 %>
@@ -35,7 +42,7 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
     <div class="col-sm-10">
-      <%= f.submit :update, class: "btn btn-secondary",
+      <%= f.submit (t'.update'), class: "btn btn-secondary",
                    style: "margin-top: 15px" %>
     </div>
   <% end %>

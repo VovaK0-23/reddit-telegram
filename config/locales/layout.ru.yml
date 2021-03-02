@@ -1,0 +1,12 @@
+ru:
+  layouts:
+    chats: Чаты
+    edit_profile: Редактировать профиль
+    rom: ROM
+    language: Язык
+    languages:
+      english: EN
+      russian: RU
+    sign_in: Войти
+    sign_out: Выйти
+    sign_up: Регистрация

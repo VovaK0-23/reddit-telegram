@@ -13,35 +13,43 @@
 <body>
 <nav class="navbar navbar-expand sticky-top navbar-dark bg-dark">
   <div class="container-fluid">
-    <%= link_to "ROM", root_path, id: "ROM", class: "navbar-brand nounderline" %>
+    <%= link_to t('layouts.rom'), root_path, id: "ROM", class: "navbar-brand nounderline" %>
     <% if user_signed_in? %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link active nounderline" %>
+            <%= link_to t('layouts.edit_profile'), edit_user_registration_path, class: "nav-link active nounderline" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link active nounderline" %>
+            <%= link_to t('layouts.sign_out'), destroy_user_session_path, method: :delete, class: "nav-link active nounderline" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Chats", chats_path, class: "nav-link active nounderline" %>
+            <%= link_to t('layouts.chats'), chats_path, class: "nav-link active nounderline" %>
           </li>
         </ul>
       </div>
       <span class="navbar-text nav-text">
-    Signed in as <%= current_user.email %>
+        <% if current_user.locale  == 'ru' %>
+          <%= link_to t('layouts.languages.english'), url_for(locale: 'en') %>
+        <% else %>
+          <%= link_to t('layouts.languages.russian'), url_for(locale: 'ru') %>
+        <% end %>
       </span>
     <% else %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "nav-link active nounderline" %>
+            <%= link_to t('layouts.sign_up'), new_user_registration_path, class: "nav-link active nounderline" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sign in", new_user_session_path, class: "nav-link active nounderline" %>
+            <%= link_to t('layouts.sign_in'), new_user_session_path, class: "nav-link active nounderline" %>
           </li>
         </ul>
       </div>
+      <span class="navbar-text nav-text">
+        <%= link_to t('layouts.languages.english'), url_for(locale: 'en') %>
+        <%= link_to t('layouts.languages.russian'), url_for(locale: 'ru') %>
+      </span>
     <% end %>
     <span class="navbar-text nav-text message">
      <% flash.each do |name, msg| %>

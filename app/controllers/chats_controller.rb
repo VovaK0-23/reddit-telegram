@@ -11,10 +11,10 @@ class ChatsController < InheritedResources::Base
     @chat = Chat.create(chat_params)
 
     if @chat.persisted?
-      flash[:notice] = 'Chat was saved'
+      flash[:notice] = t('.success')
       redirect_to chats_path(current_user.id)
     else
-      flash.now[:alert] = 'Please fill all fields correctly'
+      flash.now[:alert] = t('.error')
       render :new
     end
   end
@@ -30,10 +30,10 @@ class ChatsController < InheritedResources::Base
   def update
     @chat = Chat.find(params[:id])
     if @chat.update(chat_params)
-      flash[:notice] = 'Chat was updated!'
+      flash[:notice] = t('.success')
       redirect_to chats_path
     else
-      flash[:alert] = 'Please fill all fields correctly!'
+      flash[:alert] = t('.error')
       render :edit
     end
   end
@@ -48,6 +48,6 @@ class ChatsController < InheritedResources::Base
   private
 
   def chat_params
-    params.require(:chat).permit(:name, :user_id, :subreddit, :subreddit_sorting)
+    params.require(:chat).permit(:name, :user_id, :subreddit, :subreddit_sorting, :limit, :time)
   end
 end
