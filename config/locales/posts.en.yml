@@ -13,7 +13,7 @@
        publish: Publish
      create:
        success: Post was saved
-       error: You cannot save this post
+       error: Post already saved
      publish:
        gif_too_big: This gif is too big
        success: Post was send

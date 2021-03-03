@@ -22,8 +22,8 @@ class PostsController < InheritedResources::Base
       flash[:notice] = t('.success')
       redirect_to posts_path
     else
-      flash.now[:alert] = t('.error')
-      render 'index'
+      flash[:error] = t('.error')
+      redirect_to posts_path
     end
   end
 

@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :chat
   has_one_attached :image
   validate :acceptable_image
+  validates_uniqueness_of :link, scope: :chat_id
 
   scope :published, -> { where.not(published_at: nil) }
   scope :unpublished, -> { where(published_at: nil) }

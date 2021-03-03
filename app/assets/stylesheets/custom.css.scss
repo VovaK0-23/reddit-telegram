@@ -63,6 +63,10 @@
   margin-top: 19px;
   height: 60px;
 }
+.nav-link:hover{
+  padding-top: 10px;
+}
+
 
 //Card
 .card-container{
@@ -249,12 +253,14 @@
 }
 @media (min-width: 720px) {
   .one {
-visibility: collapse;
+    visibility: collapse;
+    display: none;
   }
 }
 @media (max-width: 720px) {
   .two {
-visibility: collapse;
+    visibility: collapse;
+    display: none;
   }
 }
 
@@ -302,6 +308,7 @@ visibility: collapse;
   background: transparent url(l.png) no-repeat !important;
 }
 .btn-up {
+  display: none;
   cursor: pointer;
   left: 0;
   background: transparent url(up.png) no-repeat !important;
