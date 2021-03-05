@@ -5,14 +5,14 @@ class PublisherService
 
   def auto_posting
     PostPublisherJob.perform_later(@chat)
-    @chat.update(:auto_posting => true)
   end
 
   def create
     service = RedditService::RedditClient.new.receive_posts(
         @chat.subreddit + @chat.subreddit_sorting,
         @chat.limit,
-        @chat.time)
+        @chat.time,
+        params[:after_token])
     @posts = service[:posts]
     @after_token = service[:after_token]
     @posts.each do |p|
@@ -40,6 +40,9 @@ class PublisherService
       post.user_id = @chat.user_id
       post.auto_posted = true
 
+      if p == @posts.last
+        params = {after_token: @after_token}
+      end
       if post.save
         break
       else

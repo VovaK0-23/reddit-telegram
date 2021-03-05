@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   get 'chats/:id/my_posts/unpublished', to: 'posts#unpublished', as: :unpublished
 
   post 'chats/:id/publisher', to: 'publisher#auto_posting', as: :auto_posting
+  post 'chats/:id/publisher_stop', to: 'publisher#auto_posting_stop', as: :auto_posting_stop
 end
