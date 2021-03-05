@@ -22,8 +22,14 @@ class PostsController < InheritedResources::Base
       flash[:notice] = t('.success')
       redirect_to posts_path
     else
-      flash[:error] = t('.error')
-      redirect_to posts_path
+      post = Post.find_by_link(@post.link)
+      if post.auto_posted == true
+        flash[:error] = t('.bot')
+        redirect_to posts_path
+      else
+        flash[:error] = t('.error')
+        redirect_to posts_path
+      end
     end
   end
 

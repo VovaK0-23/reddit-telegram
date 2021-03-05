@@ -14,6 +14,7 @@
      create:
        success: Post was saved
        error: Post already saved
+       bot: Post already send by auto-posting
      publish:
        gif_too_big: This gif is too big
        success: Post was send
