@@ -359,6 +359,7 @@ DEPENDENCIES
   reddit-base
   rspec-rails
   sass-rails (>= 6)
+  sidekiq
   sidekiq-statistic
   spring
   spring-watcher-listen (~> 2.0.0)

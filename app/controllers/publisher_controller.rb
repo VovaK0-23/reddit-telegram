@@ -1,7 +1,6 @@
 class PublisherController < InheritedResources::Base
   def update
     @chat = Chat.find(params[:id])
-
     if @chat.auto_posting_time.nil?
       @chat.update(:auto_posting_time => 30)
     else

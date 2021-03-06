@@ -1,13 +1,14 @@
 <div class="se-pre-con"></div>
 <div class="container-home posts" id="home-container">
   <div class="justify-content-center center row" >
-    <div class="mx-3">
-      <%= link_to t('.published'), published_path,
+
+    <div class= "mx-3 text-center">
+      <%= link_to t('.all'), my_posts_path,
                   method: :get,
                   class: "bg-btn no-underline bt"%>
     </div>
-    <div class= "mx-3 text-center">
-      <%= link_to t('.all'), my_posts_path,
+    <div class="mx-3">
+      <%= link_to t('.published'), published_path,
                   method: :get,
                   class: "bg-btn no-underline bt"%>
     </div>
@@ -16,6 +17,12 @@
                   method: :get,
                   class: "bg-btn no-underline bt"%>
     </div>
+    <div class="mx-3">
+      <%= link_to t('.auto_posted'), auto_posted_path,
+                  method: :get,
+                  class: "bg-btn no-underline bt"%>
+    </div>
+
   </div>
 </div>
 <% @posts.each do |post|%>
@@ -32,6 +39,11 @@
       <div class="text-center center" style="margin-bottom: -20px">
         <%= button_to post.published_at? ? t('.send_again') : t('.publish'), publish_path(post),
                       method: :post,
+                      class: "bg-btn"%>
+      </div>
+      <div class="text-center center" style="margin-bottom: -20px">
+        <%= button_to t('.delete'), delete_post_path(post),
+                      method: :delete,
                       class: "bg-btn"%>
       </div>
     </div>

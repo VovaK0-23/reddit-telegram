@@ -9,8 +9,10 @@
        all: All
        published: Published
        unpublished: Unpublished
+       auto_posted: Auto posted
        send_again: Send again
        publish: Publish
+       delete: Delete
      create:
        success: Post was saved
        error: Post already saved
@@ -19,3 +21,5 @@
        gif_too_big: This gif is too big
        success: Post was send
        error: You cannot send this post
+     destroy:
+       error: Post was deleted

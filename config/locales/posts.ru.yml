@@ -9,8 +9,10 @@
        all: Все
        published: Опубликованные
        unpublished: Не опубликованные
+       auto_posted: Авто посты
        send_again: Отправить опять
        publish: Опубликовать
+       delete: Удалить
      create:
        success: Пост сохранён
        error: Пост уже был сохранён
@@ -19,3 +21,5 @@
        gif_too_big: Эта гифка слишком большая
        success: Пост отправлен
        error: Этот пост нельзя отправить
+     destroy:
+       error: Пост удалён

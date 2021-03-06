@@ -24,6 +24,7 @@ gem 'webpacker', '~> 4.0'
 gem 'kaminari'
 gem 'whenever', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'sidekiq'
 
 
 group :development, :test do

@@ -63,7 +63,7 @@ class PublisherService
     if link.blank?
       service.send_message(post.body)
     else
-      if link.include?(".gif")
+      if link.include?(".gif") or link.include?(".mp4?source=fallback")
         file = valid_gif(link)
         if file == false
           return
@@ -71,7 +71,7 @@ class PublisherService
           service.send_animation(file, @post.body)
         end
       end
-      service.send_photo(valid_image(link, 95), @post.body) if @post.link.include?(".jpeg") or @post.link.include?(".jpg") or @post.link.include?(".png")
+      service.send_photo(valid_image(link, 95), @post.body) if link.include?(".jpeg") or link.include?(".jpg") or link.include?(".png")
       service.send_video(link, @post.body) if link.include?(".mp4")
       end
   end
