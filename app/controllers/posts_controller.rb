@@ -9,7 +9,7 @@ class PostsController < InheritedResources::Base
         set_chat.subreddit + set_chat.subreddit_sorting,
         set_chat.limit,
         set_chat.time,
-        params[:after_token],[:before_token])
+        params[:after_token], params[:before_token])
     @posts = service[:posts]
     @after_token = service[:after_token]
     @before_token = service[:before_token]

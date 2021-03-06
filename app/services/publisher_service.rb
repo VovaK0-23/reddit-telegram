@@ -8,11 +8,12 @@ class PublisherService
   end
 
   def create
+    until @saved
     service = RedditService::RedditClient.new.receive_posts(
         @chat.subreddit + @chat.subreddit_sorting,
         @chat.limit,
         @chat.time,
-        params[:after_token])
+        @after_token)
     @posts = service[:posts]
     @after_token = service[:after_token]
     @posts.each do |p|
@@ -40,16 +41,15 @@ class PublisherService
       post.user_id = @chat.user_id
       post.auto_posted = true
 
-      if p == @posts.last
-        params = {after_token: @after_token}
-      end
       if post.save
+        @saved = true
         break
       else
         next
       end
     end
-  end
+    end
+    end
 
   def publish
     @post = Post.where(chat_id: @chat.id, auto_posted: true, published_at: nil).last

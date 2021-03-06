@@ -57,7 +57,7 @@
   <div class="ft-btn btn-up-right x"></div>
 </div>
 <div class="footer row">
-  <% if params.has_key?(:after_token) %>
+  <% if params.has_key?(:after_token) or params.has_key?(:before_token) %>
     <%= button_to t('.previous'), posts_path,
                   method: :get,
                   params: { before_token: @before_token },
