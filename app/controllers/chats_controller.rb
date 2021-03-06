@@ -5,8 +5,6 @@ class ChatsController < InheritedResources::Base
     @chat = current_user.chats
   end
 
-  def show; end
-
   def create
     @chat = Chat.create(chat_params)
 

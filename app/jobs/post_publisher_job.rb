@@ -5,7 +5,8 @@ class PostPublisherJob < ApplicationJob
     while Chat.find(chat.id).auto_posting == true
     PublisherService.new(chat).create
     PublisherService.new(chat).publish
-    sleep(20.seconds)
+    time = Chat.find(chat.id).auto_posting_time
+    sleep(time.minutes)
     end
   end
 end

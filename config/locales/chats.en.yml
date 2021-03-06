@@ -34,6 +34,11 @@
        year: This year
        all: All time
        create: Save
+     show:
+       autopublisher: Auto-publisher
+       start: Start
+       stop: Stop
+       time: How often publish? (time in minutes)
      create:
        success: Chat saved successfuly
        error: Please fill all fields correctly

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_215219) do
+ActiveRecord::Schema.define(version: 2021_03_06_153153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_03_04_215219) do
     t.integer "limit"
     t.string "time"
     t.boolean "auto_posting"
+    t.integer "auto_posting_time"
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
