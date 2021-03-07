@@ -8,10 +8,7 @@ class Post < ApplicationRecord
   scope :published, -> { where.not(published_at: nil) }
   scope :unpublished, -> { where(published_at: nil) }
   scope :auto_posted, -> { where(auto_posted: true) }
-
-  def self.not_auto_posted
-    where(auto_posted: nil)
-  end
+  scope :not_auto_posted, -> { where(auto_posted: nil).or(self.where(auto_posted: false)) }
 
   def acceptable_image
     return unless image.attached?
