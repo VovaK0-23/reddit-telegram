@@ -10,12 +10,12 @@
     <div class="jumbotron text-center text-white" id="home-container">
       <p><%= post['title'] %></p>
       <% if post['crosspost_parent_list'].present?%>
-        <% if post['crosspost_parent_list']['is_video'] == true %>
-          <%= video_tag post['crosspost_parent_list']['secure_media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 98%;"%>
-        <% elsif post['crosspost_parent_list']['domain'] == "i.imgur.com" && post['crosspost_parent_list']['url_overridden_by_dest'].include?(".gifv") %>
-          <%= video_tag post['crosspost_parent_list']['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 98%;" %>
+        <% if post['crosspost_parent_list'].first['is_video'] == true %>
+          <%= video_tag post['crosspost_parent_list'].first['secure_media']['reddit_video']['fallback_url'], :controls => true, style: "max-width: 98%;"%>
+        <% elsif post['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post['crosspost_parent_list'].first['url_overridden_by_dest'].include?(".gifv") %>
+          <%= video_tag post['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url'], :controls => true, style: "max-width: 98%;" %>
         <% else %>
-          <%= image_tag post['crosspost_parent_list']['url'], style: "max-width: 98%;"%>
+          <%= image_tag post['crosspost_parent_list'].first['url'], style: "max-width: 98%;"%>
         <% end %>
       <% else %>
         <% if post['is_video'] == true %>
@@ -29,12 +29,12 @@
       <%= form_for :post do |f| %>
         <%= f.hidden_field :body, value: post['title']%>
         <% if post['crosspost_parent_list'].present?%>
-          <% if post['crosspost_parent_list']['is_video'] == true %>
-            <%= f.hidden_field :link, value: post['crosspost_parent_list']['media']['reddit_video']['fallback_url']%>
-          <% elsif post['crosspost_parent_list']['domain'] == "i.imgur.com" && post['url_overridden_by_dest'].include?(".gifv") %>
-            <%= f.hidden_field :link, value: post['crosspost_parent_list']['preview']['reddit_video_preview']['fallback_url']%>
+          <% if post['crosspost_parent_list'].first['is_video'] == true %>
+            <%= f.hidden_field :link, value: post['crosspost_parent_list'].first['media']['reddit_video']['fallback_url']%>
+          <% elsif post['crosspost_parent_list'].first['domain'] == "i.imgur.com" && post['url_overridden_by_dest'].include?(".gifv") %>
+            <%= f.hidden_field :link, value: post['crosspost_parent_list'].first['preview']['reddit_video_preview']['fallback_url']%>
           <% else %>
-            <%= f.hidden_field :link, value: post['crosspost_parent_list']['url']%>
+            <%= f.hidden_field :link, value: post['crosspost_parent_list'].first['url']%>
           <% end %>
         <% else %>
           <% if post['is_video'] == true %>

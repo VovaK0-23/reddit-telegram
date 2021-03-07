@@ -12,8 +12,8 @@ module RedditService
         after_token: client.after, before_token: client.before }
     end
 
-    def publisher_receive_posts(subreddit, limit, time, after_token)
-      client = @client.get(subreddit, t: time, after: after_token, limit: limit, count: limit, nocache: true).body.data
+    def publisher_receive_posts(subreddit, time, after_token)
+      client = @client.get(subreddit, t: time, after: after_token, limit: 100, count: 100, nocache: true).body.data
       { posts: client.children.map { |post| post.extract!("data").values.first },
         after_token: client.after}
     end

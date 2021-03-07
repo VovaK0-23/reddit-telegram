@@ -21,6 +21,7 @@ class PublisherController < InheritedResources::Base
   def auto_publisher
     @chat.update(:auto_posting => true)
     PublisherService.new(@chat).auto_posting
+    sleep(30.seconds)
   end
 
   def auto_publisher_stop

@@ -1,3 +1,4 @@
+<div class="se-pre-con text-center"><p>Wait...</p></div>
 <div>
   <div class="container card-container chat-form">
     <div class="card card-sign">
@@ -15,7 +16,7 @@
               <% if @chat.auto_posting == true%>
               <%= f.submit (t'.stop'), class: "bg-btn"%>
               <% else %>
-                <%= f.submit (t'.start'), class: "bg-btn"%>
+                <%= f.submit (t'.start'), class: "bg-btn start"%>
               <% end %>
             </div>
           </div>
