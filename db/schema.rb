@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_184108) do
+ActiveRecord::Schema.define(version: 2021_03_06_153153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_02_22_184108) do
     t.string "subreddit_sorting"
     t.integer "limit"
     t.string "time"
+    t.boolean "auto_posting"
+    t.integer "auto_posting_time"
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_184108) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "chat_id", null: false
     t.string "link"
+    t.boolean "auto_posted"
     t.index ["chat_id"], name: "index_posts_on_chat_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

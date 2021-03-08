@@ -5,8 +5,6 @@ class ChatsController < InheritedResources::Base
     @chat = current_user.chats
   end
 
-  def show; end
-
   def create
     @chat = Chat.create(chat_params)
 
@@ -48,6 +46,6 @@ class ChatsController < InheritedResources::Base
   private
 
   def chat_params
-    params.require(:chat).permit(:name, :user_id, :subreddit, :subreddit_sorting, :limit, :time)
+    params.require(:chat).permit(:name, :user_id, :subreddit, :subreddit_sorting, :limit, :time, :auto_posting)
   end
 end

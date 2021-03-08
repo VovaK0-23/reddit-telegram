@@ -9,7 +9,7 @@ class PostsController < InheritedResources::Base
         set_chat.subreddit + set_chat.subreddit_sorting,
         set_chat.limit,
         set_chat.time,
-        params[:after_token],[:before_token])
+        params[:after_token], params[:before_token])
     @posts = service[:posts]
     @after_token = service[:after_token]
     @before_token = service[:before_token]
@@ -22,9 +22,23 @@ class PostsController < InheritedResources::Base
       flash[:notice] = t('.success')
       redirect_to posts_path
     else
-      flash.now[:alert] = t('.error')
-      render 'index'
+      post = Post.find_by_link(@post.link)
+      if post.auto_posted == true
+        flash[:error] = t('.bot')
+        redirect_to posts_path
+      else
+        flash[:error] = t('.error')
+        redirect_to posts_path
+      end
     end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    chat = post.chat
+    post.destroy
+    flash.notice= t('.error')
+    redirect_to my_posts_path(chat.id)
   end
 
   def sort_posts
@@ -35,8 +49,13 @@ class PostsController < InheritedResources::Base
     @posts = sort_posts
   end
 
+  def auto_posted
+    @posts = my_posts.auto_posted
+    render :my_posts
+  end
+
   def published
-    @posts = sort_posts.published
+    @posts = sort_posts.published.not_auto_posted
     render :my_posts
   end
 
@@ -60,7 +79,7 @@ class PostsController < InheritedResources::Base
         service.send_photo(image["secure_url"], post.body)
       end
     else
-      if link.include?(".gif")
+      if link.include?(".gif") or link.include?(".mp4?source=fallback")
         file = valid_gif(link)
         if file == false
           flash[:alert] = t('.gif_too_big')
@@ -103,9 +122,9 @@ class PostsController < InheritedResources::Base
   def resize_gif(link)
     gif = MiniMagick::Image.open(link)
     if gif.size <= 52428800
-      return Faraday::UploadIO.new(gif.path, gif.type)
+      Faraday::UploadIO.new(gif.path, gif.type)
     else
-      return false
+      false
     end
   end
 
