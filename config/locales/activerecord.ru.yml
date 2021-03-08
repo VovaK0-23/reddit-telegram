@@ -20,4 +20,4 @@ ru:
     models:
       chat: Чат
       post: Пост
-      user: Юзер
+      user: Пользователь

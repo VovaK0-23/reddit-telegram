@@ -1,6 +1,17 @@
 <% if notice %>
-  <p class="notice alert-success"><%= notice %></p>
+  <div class="container-home" id="notice-container">
+    <div class="center" >
+      <p class="notice text-center"><%= notice %></p>
+    </div>
+  </div>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+  <p class="alert alert-danger text-center"><%= alert %></p>
+<% end %>
+<% if error %>
+  <div class="container-home" id="error-container">
+    <div class="center" >
+      <p class="notice text-center"><%= error %></p>
+    </div>
+  </div>
 <% end %>

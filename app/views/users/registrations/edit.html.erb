@@ -1,77 +1,63 @@
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      <h2><%= t(".title") %></h2>
-    </div>
-    <%= render "users/shared/error_messages", resource: resource %>
-    <div class="card-body">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <br/>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
+<div>
+  <div class="container card-container">
+    <div class="card card-sign">
+      <div class="card-header">
+        <h2><%= t(".title") %></h2>
+      </div>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <div class="input-group form-group">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: t('.email') %>
           </div>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: t('.email') %>
-        </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
+          <div class="input-group form-group">
+            <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", placeholder: t('.username') %>
           </div>
-          <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", placeholder: t('.username') %>
-        </div>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="input-group form-group">
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: t('.new_password') %>
+          </div>
+          <div class="input-group form-group">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: t('.password_confirmation') %>
+          </div>
+          <div class="input-group form-group">
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: t('.current_password') %>
+          </div>
+          <div class="text-center">
+            <div class="form-group">
+              <%= f.submit t('.update_btn'), class: "bg-btn"%>
+            </div>
+          </div>
         <% end %>
-
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-key"></i></span>
-          </div>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: t('.new_password') %>
-        </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-key"></i></span>
-          </div>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: t('.password_confirmation') %>
-        </div>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-key"></i></span>
-          </div>
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: t('.current_password') %>
-        </div>
+      </div>
+      <div class="card-footer">
         <div class="text-center">
-          <div class="form-group">
-            <%= f.submit t('.update_btn'), class: "btn login_btn"%>
-          </div>
+          <%= link_to t('.back'), root_path, class: 'link' %>
         </div>
-      <% end %>
-    </div>
-    <div class="card-footer">
-      <div class="d-flex justify-content-center links">
-        <%= link_to t('.back'), root_path, :style=>'color: white;' %>
       </div>
     </div>
   </div>
-</div>
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      <h2><%= t('.cancel_account') %></h2>
-    </div>
-    <div class="card-body">
-      <div class="text-center">
-        <div class="form-group">
-          <p style='color: white;'><%= t('.unhappy') %></p>
-          <%= button_to t('.cancel_account'), registration_path(resource_name), data: { confirm: t('.confirm') }, method: :delete, class: "btn login_btn" %>
+  <div class="container card-container">
+    <div class="card card-sign">
+      <div class="card-header">
+        <h2><%= t('.cancel_account') %></h2>
+      </div>
+      <div class="card-body">
+        <div class="text-center">
+          <div class="form-group">
+            <p class='text'><%= t('.unhappy') %></p>
+            <%= button_to t('.cancel_account'), registration_path(resource_name), data: { confirm: t('.confirm') }, method: :delete, class: "bg-btn" %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card-footer">
-      <div class="d-flex justify-content-center links">
-        <%= link_to t('.back'), :back, :style=>'color: white;' %>
+      <div class="card-footer">
+        <div class="text-center">
+          <%= link_to t('.back'), :back, class: 'link' %>
+        </div>
       </div>
     </div>
   </div>

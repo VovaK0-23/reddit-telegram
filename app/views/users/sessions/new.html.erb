@@ -1,47 +1,42 @@
-<div class="container">
-  <div class="card">
+<div class="container card-container">
+  <div class="card card-sign">
     <div class="card-header">
       <h2><%= t(".log_in") %></h2>
     </div>
-    <%= render 'include/main/notification' %>
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
-          </div>
+        <div class="input-group form-group" >
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: t('users.registrations.edit.email') %>
         </div>
         <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-key"></i></span>
-          </div>
           <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: t('.password') %>
         </div>
-
         <% if devise_mapping.rememberable? %>
-          <div class="row align-items-center remember">
+          <div class="input-group form-group margin-bottom">
+          <label class="checkbox"> <%= t('.remember_me') %>
             <%= f.check_box :remember_me %>
-            <%= f.label t('.remember_me'), class: "remember-label" %>
+            <span class="checkmark"></span>
+          </label>
           </div>
+          <%= render 'include/main/notification' %>
         <% end %>
         <div class="text-center">
           <div class="form-group">
-            <%= f.submit t(".log_in"), class: "btn login_btn"%>
+            <%= f.submit t(".log_in"), class: "bg-btn"%>
           </div>
         </div>
       <% end %>
     </div>
     <div class="card-footer">
-      <div class="d-flex justify-content-center links">
-        <%= t('.no_account') %>
+      <div class="text-center margin-bottom">
         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-          <%= link_to t('layouts.sign_up'), new_registration_path(resource_name),  :style=>'color: white;'%>
+          <span class="text"><%= t('.no_account')%></span>
+          <%= link_to t('layouts.sign_up'), new_registration_path(resource_name),  class: 'link'%>
         <% end %>
       </div>
-      <div class="d-flex justify-content-center">
+      <div class="text-center">
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <%= link_to t('.forgot_password'), new_password_path(resource_name),  :style=>'color: white;'%>
+          <%= link_to t('.forgot_password'), new_password_path(resource_name),  class: 'link'%>
         <% end %>
       </div>
     </div>

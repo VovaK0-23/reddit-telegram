@@ -14,7 +14,7 @@ class ChatsController < InheritedResources::Base
       flash[:notice] = t('.success')
       redirect_to chats_path(current_user.id)
     else
-      flash.now[:alert] = t('.error')
+      flash.now[:error] = t('.error')
       render :new
     end
   end
@@ -33,7 +33,7 @@ class ChatsController < InheritedResources::Base
       flash[:notice] = t('.success')
       redirect_to chats_path
     else
-      flash[:alert] = t('.error')
+      flash[:error] = t('.error')
       render :edit
     end
   end
@@ -41,7 +41,7 @@ class ChatsController < InheritedResources::Base
   def destroy
     @chat = Chat.find(params[:id])
     @chat.destroy
-    flash.notice="Chat '#{@chat.name}' was deleted"
+    flash.notice= t(('.error'), chat_name: @chat.name)
     redirect_to chats_path
   end
 

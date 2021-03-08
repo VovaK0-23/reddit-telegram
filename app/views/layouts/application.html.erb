@@ -5,60 +5,63 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+  </style>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
-<nav class="navbar navbar-expand sticky-top navbar-dark bg-dark">
-  <div class="container-fluid">
-    <%= link_to t('layouts.rom'), root_path, id: "ROM", class: "navbar-brand nounderline" %>
-    <% if user_signed_in? %>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <%= link_to t('layouts.edit_profile'), edit_user_registration_path, class: "nav-link active nounderline" %>
+<% if user_signed_in? %>
+  <div class="space-nav">
+    <nav class="navbar navbar-expand sticky-top navbar-dark navbar-style navbar-asi">
+      <%= link_to image_tag("logo.png", size: '55'), root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-5" id="chat">
+            <%= link_to t('layouts.chats'), chats_path, class: "nav-link no-underline" %>
           </li>
-          <li class="nav-item">
-            <%= link_to t('layouts.sign_out'), destroy_user_session_path, method: :delete, class: "nav-link active nounderline" %>
+          <li class="nav-item mx-4" id="edit">
+            <%= link_to t('layouts.edit_profile'), edit_user_registration_path, class: "nav-link no-underline" %>
           </li>
-          <li class="nav-item">
-            <%= link_to t('layouts.chats'), chats_path, class: "nav-link active nounderline" %>
-          </li>
-        </ul>
-      </div>
-      <span class="navbar-text nav-text">
-        <% if current_user.locale  == 'ru' %>
-          <%= link_to t('layouts.languages.english'), url_for(locale: 'en') %>
-        <% else %>
-          <%= link_to t('layouts.languages.russian'), url_for(locale: 'ru') %>
-        <% end %>
-      </span>
-    <% else %>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <%= link_to t('layouts.sign_up'), new_user_registration_path, class: "nav-link active nounderline" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to t('layouts.sign_in'), new_user_session_path, class: "nav-link active nounderline" %>
+          <li class="nav-item mx-4" id="lang">
+            <% if current_user.locale  == 'ru' %>
+              <%= link_to t('layouts.languages.english'), url_for(locale: 'en'), class: "nav-link no-underline" %>
+            <% else %>
+              <%= link_to t('layouts.languages.russian'), url_for(locale: 'ru'), class: "nav-link no-underline" %>
+            <% end %>
           </li>
         </ul>
       </div>
-      <span class="navbar-text nav-text">
-        <%= link_to t('layouts.languages.english'), url_for(locale: 'en') %>
-        <%= link_to t('layouts.languages.russian'), url_for(locale: 'ru') %>
-      </span>
-    <% end %>
-    <span class="navbar-text nav-text message">
-     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
-        </span>
-     <% end %>
+        <%= link_to image_tag("signout.png", size: '20'), destroy_user_session_path, method: :delete, class: "navbar-brand signout" %>
+    </nav>
+    <%= render 'include/main/notification' %>
+  </div>
+<% else %>
+  <div class="space-nav">
+    <nav class="navbar navbar-expand sticky-top navbar-dark navbar-bsi">
+      <%= link_to image_tag("logo.png", size: '50'), 'https://t.me/vovak0', class: "navbar-brand hlp" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+        <ul class="navbar-nav nav-nav">
+          <li class="nav-item ">
+            <%= link_to t('layouts.languages.english'), url_for(locale: 'en'), class: "nav-link no-underline lang" %>
+          </li>
+          <li class="navbar-text">/</li>
+          <li class="nav-item">
+            <%= link_to t('layouts.languages.russian'), url_for(locale: 'ru'), class: "nav-link no-underline lang" %>
+          </li>
+        </ul>
       </div>
-</nav>
-<%#= render 'include/main/notification' %>
+    </nav>
+  </div>
+<% end %>
 <%= yield %>
 </body>
 </html>

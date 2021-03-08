@@ -1,48 +1,35 @@
-<div class="container">
-  <div class="card">
+<div class="container card-container">
+  <div class="card card-sign">
     <div class="card-header">
       <h2><%= t('layouts.sign_up') %></h2>
     </div>
     <%= render "users/shared/error_messages", resource: resource %>
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <br/>
         <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
-          </div>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: t('users.registrations.edit.email') %>
         </div>
         <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-user"></i></span>
-          </div>
           <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", placeholder: t('users.registrations.edit.username') %>
         </div>
         <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-key"></i></span>
-          </div>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: t('users.sessions.new.password') %>
         </div>
         <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-key"></i></span>
-          </div>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: t('users.registrations.edit.password_confirmation') %>
         </div>
           <div class="text-center">
             <div class="form-group">
-              <%= f.submit t('layouts.sign_up'), class: "btn login_btn"%>
+              <%= f.submit t('layouts.sign_up'), class: "bg-btn"%>
             </div>
           </div>
       <% end %>
       </div>
     <div class="card-footer">
-      <div class="d-flex justify-content-center links">
-        <%= t('.have_account')%>
+      <div class="text-center">
+        <span class="text"><%= t('.have_account')%></span>
         <%- if controller_name != 'sessions' %>
-          <%= link_to t('users.sessions.new.log_in'), new_session_path(resource_name), :style=>'color: white;'%>
+          <%= link_to t('users.sessions.new.log_in'), new_session_path(resource_name), class: 'link'%>
         <% end %>
       </div>
     </div>

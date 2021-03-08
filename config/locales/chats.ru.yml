@@ -7,6 +7,8 @@
        delete: Удалить
        btn_new_chat: Новый чат
      edit:
+       name_example: Название (@example)
+       subreddit_example: Сабредит (r/example)
        title: Настройки чата
        hot: Горячие
        new: Новые
@@ -38,3 +40,5 @@
      update:
        success: Чат успешно обновлен!
        error: Некоторые поля заполнены неправильно!
+     destroy:
+       error: 'Чат %{chat_name} был удалён'
