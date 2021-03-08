@@ -27,17 +27,21 @@ class PostsController < InheritedResources::Base
     end
   end
 
+  def sort_posts
+    Post.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
+  end
+
   def my_posts
-    @posts = Post.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
+    @posts = sort_posts
   end
 
   def published
-    @posts = Post.published.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
+    @posts = sort_posts.published
     render :my_posts
   end
 
   def unpublished
-    @posts = Post.unpublished.where(user_id: current_user.id, chat_id: set_chat.id).order(:created_at).reverse_order.page(params[:page])
+    @posts = sort_posts.unpublished
     render :my_posts
   end
 
