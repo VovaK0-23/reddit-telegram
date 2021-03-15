@@ -25,7 +25,8 @@ gem 'kaminari'
 gem 'whenever', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'sidekiq'
-
+gem "activerecord", ">= 6.0.3.5"
+gem "actionpack", ">= 6.0.3.5"
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
