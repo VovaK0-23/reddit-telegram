@@ -8,7 +8,9 @@
     "@rails/webpacker": "4.3.0",
     "bootstrap": "^4.6.0",
     "channels": "^0.0.4",
+    "elliptic": "6.5.4",
     "jquery": "^3.5.1",
+    "js-yaml": "3.13.1",
     "packs": "^3.3.3",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0"
