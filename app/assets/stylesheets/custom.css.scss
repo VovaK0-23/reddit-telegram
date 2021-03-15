@@ -1,7 +1,7 @@
 @import 'bootstrap/dist/css/bootstrap';
 
   html,body{
-    background-image: url(background.jpg);
+    background-image: asset-url("background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -301,34 +301,34 @@
 }
 .btn-nxt {
   right: 0;
-  background: transparent url(r.png) no-repeat !important;
+  background: transparent asset-url("r.png") no-repeat !important;
 }
 .btn-prv {
   left: 0;
-  background: transparent url(l.png) no-repeat !important;
+  background: transparent asset-url("l.png") no-repeat !important;
 }
 .btn-up {
   display: none;
   cursor: pointer;
   left: 0;
-  background: transparent url(up.png) no-repeat !important;
+  background: transparent asset-url("up.png") no-repeat !important;
 }
 .btn-up-center{
   cursor: pointer;
   left: 48.2%;
-  background: transparent url(up.png) no-repeat !important;
+  background: transparent asset-url("up.png") no-repeat !important;
 }
 .btn-up-right{
   right: 5px;
   cursor: pointer;
   position: fixed;
   bottom: 15%;
-  background: transparent url(up.png) no-repeat !important;
+  background: transparent asset-url("up.png") no-repeat !important;
 }
 .btn-up-nxt{
   right: 0;
   cursor: pointer;
-  background: transparent url(up.png) no-repeat !important;
+  background: transparent asset-url("up.png") no-repeat !important;
 }
 #up{
   z-index: 2;

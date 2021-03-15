@@ -27,6 +27,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'sidekiq'
 gem "activerecord", ">= 6.0.3.5"
 gem "actionpack", ">= 6.0.3.5"
+gem 'sidekiq-statistic'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -35,7 +36,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'sidekiq-statistic'
 end
 
 group :development do
