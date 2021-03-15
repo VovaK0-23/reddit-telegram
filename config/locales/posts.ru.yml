@@ -1,0 +1,25 @@
+ ru:
+   posts:
+     index:
+       my_posts: Мои посты
+       save: сохранить
+       previous: Предыдущая
+       next: Следующая страница
+     my_posts:
+       all: Все
+       published: Опубликованные
+       unpublished: Не опубликованные
+       auto_posted: Авто посты
+       send_again: Отправить опять
+       publish: Опубликовать
+       delete: Удалить
+     create:
+       success: Пост сохранён
+       error: Пост уже был сохранён
+       bot: Пост уже отправлен через функцию авто-постинг
+     publish:
+       gif_too_big: Эта гифка слишком большая
+       success: Пост отправлен
+       error: Этот пост нельзя отправить
+     destroy:
+       error: Пост удалён

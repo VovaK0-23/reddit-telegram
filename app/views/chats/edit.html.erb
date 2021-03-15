@@ -1,0 +1,37 @@
+<div>
+  <div class="container card-container chat-form">
+    <div class="card card-sign">
+      <div class="card-header">
+        <h2><%= t'.title'%></h2>
+      </div>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <div class="card-body">
+        <%= form_for @chat, url: update_chat_path, method: :put do |f| %>
+          <div class="input-group form-group">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: t('.name_example')%>
+          </div>
+          <div class="input-group form-group">
+            <%= f.text_field :subreddit, autofocus: true, autocomplete: "subreddit", class: "form-control", placeholder: t('.subreddit_example') %>
+          </div>
+          <div class="form-group">
+            <%= f.number_field :limit, in:5...100, class: "number-field", placeholder: t('activerecord.attributes.chat.limit')%>
+          </div>
+          <div class="custom-selec">
+            <%= f.select :subreddit_sorting, [[(t'activerecord.attributes.chat.subreddit_sorting')], [(t'.top'), "/top"], [(t'.hot'), "/hot"], [(t'.new'), "/new"], [(t'.rising'), "/rising"]]%>
+          </div>
+          <div id="hidden_div">
+            <div class="custom-selec">
+              <%= f.select :time, [[(t'.now')], [(t'.now'), "hour"], [(t'.today'), "day"], [(t'.week'), "week"], [(t'.month'), "month"], [(t'.year'), "year"], [(t'.all'), "all"]] %>
+            </div>
+          </div>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          </div>
+          <div class="card-footer">
+            <div class="text-center margin-bottom">
+              <%= f.submit (t'.update'), class: "bg-btn"%>
+            </div>
+          </div>
+        <% end %>
+        </div>
+  </div>
+</div>

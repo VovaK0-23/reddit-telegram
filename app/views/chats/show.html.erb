@@ -1,0 +1,28 @@
+<div class="se-pre-con text-center"><p>Wait...</p></div>
+<div>
+  <div class="container card-container chat-form">
+    <div class="card card-sign">
+      <div class="card-header">
+        <h2><%= t'.autopublisher'%></h2>
+      </div>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <div class="card-body">
+        <%= form_for @chat, url: auto_posting_path, method: :post do |f| %>
+          <div class="form-group">
+            <%= f.number_field :auto_posting_time, in:5...1440, class: "number-field", placeholder: t('.time') %>
+          </div>
+          <div class="card-footer">
+            <div class="text-center margin-bottom">
+              <% if @chat.auto_posting == true%>
+              <%= f.submit (t'.stop'), class: "bg-btn"%>
+              <% else %>
+                <%= f.submit (t'.start'), class: "bg-btn start"%>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+

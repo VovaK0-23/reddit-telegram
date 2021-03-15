@@ -30,4 +30,21 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  pages:
+    home:
+      first: Hello world
+      second: Placeholder
+  users:
+    sessions:
+      new:
+        log_in: Log in
+        password: Password
+        remember_me: Remember me
+        no_account: Don't have an account?
+        forgot_password: Forgot your password?
+    passwords:
+      new:
+        resend_confirmation: Resend confirmation instructions
+    registrations:
+      new:
+        have_account: Already have an account?

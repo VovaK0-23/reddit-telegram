@@ -1,0 +1,49 @@
+ en:
+   chats:
+     index:
+       name: Name
+       posts: Posts
+       edit: Edit
+       delete: Delete
+       btn_new_chat: New chat
+     edit:
+       name_example: Name (@example)
+       subreddit_example: Subreddit (r/example)
+       title: Chat settings
+       hot: HOT
+       new: New
+       rising: Rising
+       top: TOP
+       now: Now
+       today: Today
+       week: This week
+       month: This month
+       year: This year
+       all: All time
+       update: Update
+     new:
+       title: Add new chat
+       hot: HOT
+       new: New
+       rising: Rising
+       top: TOP
+       now: Now
+       today: Today
+       week: This week
+       month: This month
+       year: This year
+       all: All time
+       create: Save
+     show:
+       autopublisher: Auto-publisher
+       start: Start
+       stop: Stop
+       time: How often publish? (time in minutes)
+     create:
+       success: Chat saved successfuly
+       error: Please fill all fields correctly
+     update:
+       success: Chat was updated!
+       error: Please fill all fields correctly!
+     destroy:
+       error: 'Chat %{chat_name} was deleted'

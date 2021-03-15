@@ -1,0 +1,49 @@
+ ru:
+   chats:
+     index:
+       name: Название
+       posts: Посты
+       edit: Редактировать
+       delete: Удалить
+       btn_new_chat: Новый чат
+     edit:
+       name_example: Название (@example)
+       subreddit_example: Сабредит (r/example)
+       title: Настройки чата
+       hot: Горячие
+       new: Новые
+       rising: Набирающие популярность
+       top: ТОП
+       now: Сейчас
+       today: Сегодня
+       week: На этой неделе
+       month: В этом месяце
+       year: В этом году
+       all: За все время
+       update: Обновить
+     new:
+       title: Создать новый чат
+       hot: Горячие
+       new: Новые
+       rising: Набирающие популярность
+       top: ТОП
+       now: Сейчас
+       today: Сегодня
+       week: На этой неделе
+       month: В этом месяце
+       year: В этом году
+       all: За все время
+       create: Сохранить
+     show:
+       autopublisher: Авто-публикация
+       start: Старт
+       stop: Стоп
+       time: Раз в сколько минут отправлять пост?
+     create:
+       success: Чат успешно сохранен
+       error: Некоторые поля заполнены неправильно!
+     update:
+       success: Чат успешно обновлен!
+       error: Некоторые поля заполнены неправильно!
+     destroy:
+       error: 'Чат %{chat_name} был удалён'

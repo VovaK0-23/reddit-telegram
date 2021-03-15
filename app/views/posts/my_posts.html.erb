@@ -1,0 +1,59 @@
+<div class="se-pre-con"></div>
+<div class="container-home posts" id="home-container">
+  <div class="justify-content-center center row" >
+
+    <div class= "mx-3 text-center">
+      <%= link_to t('.all'), my_posts_path,
+                  method: :get,
+                  class: "bg-btn no-underline bt"%>
+    </div>
+    <div class="mx-3">
+      <%= link_to t('.published'), published_path,
+                  method: :get,
+                  class: "bg-btn no-underline bt"%>
+    </div>
+    <div class="mx-3">
+      <%= link_to t('.unpublished'), unpublished_path,
+                  method: :get,
+                  class: "bg-btn no-underline bt"%>
+    </div>
+    <div class="mx-3">
+      <%= link_to t('.auto_posted'), auto_posted_path,
+                  method: :get,
+                  class: "bg-btn no-underline bt"%>
+    </div>
+
+  </div>
+</div>
+<% @posts.each do |post|%>
+  <div class="container-app">
+    <div class="jumbotron text-center text-white" id="home-container">
+      <p><%= post.body %></p>
+      <% if post.link %>
+        <% if post.link.include?(".mp4")%>
+          <%= video_tag post.link, :controls => true, style: "max-width: 98%;"%>
+        <% else %>
+          <%= image_tag post.link, style: "max-width: 98%;"%>
+        <% end %>
+      <% end %>
+      <div class="text-center center" style="margin-bottom: -20px">
+        <%= button_to post.published_at? ? t('.send_again') : t('.publish'), publish_path(post),
+                      method: :post,
+                      class: "bg-btn"%>
+      </div>
+      <div class="text-center center" style="margin-bottom: -20px">
+        <%= button_to t('.delete'), delete_post_path(post),
+                      method: :delete,
+                      class: "bg-btn"%>
+      </div>
+    </div>
+<% end %>
+<div class="c">
+  <div class="ft-btn btn-up-right x"></div>
+</div>
+<div class="footer row">
+  <div id="up" class="ft-btn btn-up x"></div>
+  <%= paginate @posts%>
+</div>
+</div>
+

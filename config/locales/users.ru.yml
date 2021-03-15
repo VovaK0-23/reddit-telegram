@@ -1,0 +1,15 @@
+ ru:
+   users:
+     registrations:
+       edit:
+         title: Редактировать профиль
+         email: Почта
+         username: Имя пользователя
+         new_password: Новый пароль
+         password_confirmation: Подтверждение пароля
+         current_password: Текущий пароль
+         update_btn: Обновить
+         back: назад
+         cancel_account: Удалить аккаунт
+         unhappy: Недовольны?
+         confirm: Вы уверены?
