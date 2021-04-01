@@ -39,7 +39,7 @@ class ChatsController < InheritedResources::Base
   def destroy
     @chat = Chat.find(params[:id])
     @chat.destroy
-    flash.notice= t(('.error'), chat_name: @chat.name)
+    flash.notice = t('.error', chat_name: @chat.name)
     redirect_to chats_path
   end
 
