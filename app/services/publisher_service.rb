@@ -47,19 +47,19 @@ class PublisherService
     if link.blank?
       service.send_message(chat.name, post.body)
     elsif link.include?('.gif') or link.include?('.mp4?source=fallback')
-      file = valid_gif(link)
+      file = PublisherService.valid_gif(link)
       return if file == false
 
       service.send_animation(chat.name, file, @post.body)
     else
       if link.include?('.jpeg') or link.include?('.jpg') or link.include?('.png')
-        service.send_photo(chat.name, valid_image(link, 95), @post.body)
+        service.send_photo(chat.name, PublisherService.valid_image(link, 95), @post.body)
       end
       service.send_video(chat.name, link, @post.body) if link.include?('.mp4')
     end
   end
 
-  def valid_image(link, resize_value)
+  def self.valid_image(link, resize_value)
     image = MiniMagick::Image.open(link)
     return link if image.size <= MAX_VALID_IMAGE_SIZE
 
@@ -78,7 +78,7 @@ class PublisherService
     Faraday::UploadIO.new(image.path, image.type)
   end
 
-  def valid_gif(link)
+  def self.valid_gif(link)
     gif = MiniMagick::Image.open(link)
     return link if gif.size <= MAX_VALID_GIF_SIZE
 
@@ -97,9 +97,8 @@ class PublisherService
   private
 
   def receive_post
-    service = RedditService::RedditClient.receive_posts(
+    service = RedditService::RedditClient.publisher_receive_posts(
         @chat.subreddit + @chat.subreddit_sorting,
-        @chat.limit,
         @chat.time,
         @after_token
       )

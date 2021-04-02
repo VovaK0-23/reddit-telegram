@@ -5,7 +5,7 @@ class PostsController < InheritedResources::Base
   end
 
   def index
-    service = RedditService::RedditClient.new.receive_posts(
+    service = RedditService::RedditClient.receive_posts(
         set_chat.subreddit + set_chat.subreddit_sorting,
         set_chat.limit,
         set_chat.time,
