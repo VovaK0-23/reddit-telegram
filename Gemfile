@@ -3,9 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem "actionpack", ">= 6.0.3.5"
+gem 'actionpack', '>= 6.0.3.5'
 gem 'activeadmin'
-gem "activerecord", ">= 6.0.3.5"
+gem 'activerecord', '>= 6.0.3.5'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cancancan'
 gem 'cloudinary'
@@ -22,7 +22,7 @@ gem 'rails-i18n'
 gem 'reddit-base'
 gem 'redis', '~> 4.2', '>= 4.2.5'
 gem 'sass-rails', '>= 6'
-gem 'sidekiq'
+gem 'sidekiq', '~> 5.2.8'
 gem 'sidekiq-statistic'
 gem 'telegram-bot'
 gem 'turbolinks', '~> 5'
