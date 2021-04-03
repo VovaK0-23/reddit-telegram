@@ -359,6 +359,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.4)
   rails-i18n
   reddit-base
+  redis
   rspec-rails
   sass-rails (>= 6)
   sidekiq
