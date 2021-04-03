@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
+gem "actionpack", ">= 6.0.3.5"
 gem 'activeadmin'
+gem "activerecord", ">= 6.0.3.5"
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cancancan'
 gem 'cloudinary'
@@ -11,23 +13,22 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'jbuilder', '~> 2.7'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'rails-i18n'
 gem 'reddit-base'
+gem 'redis'
 gem 'sass-rails', '>= 6'
+gem 'sidekiq'
+gem 'sidekiq-statistic'
 gem 'telegram-bot'
 gem 'turbolinks', '~> 5'
-gem 'webpacker', '~> 4.0'
-gem 'kaminari'
-gem 'whenever', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'sidekiq'
-gem "activerecord", ">= 6.0.3.5"
-gem "actionpack", ">= 6.0.3.5"
-gem 'sidekiq-statistic'
+gem 'webpacker', '~> 4.0'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
